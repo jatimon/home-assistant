@@ -17,6 +17,7 @@ binary_sensor: !include binary_sensors.yaml
 sensor: !include sensors.yaml
 switch: !include switches.yaml
 template: !include templates.yaml
+zone: !include zones.yaml
 python_script:
 
 logger:
@@ -40,6 +41,10 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
+
+# Google Wifi
+sensor:
+  - platform: google_wifi
 
 # REally crappy tuya hack
 system_log:
