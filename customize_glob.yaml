@@ -1,0 +1,4 @@
+"*_water_level":
+  icon: mdi:waves
+  device_class: battery
+

@@ -1,0 +1,3 @@
+platform: switch
+name: grill_light
+entity_id: switch.grill_light

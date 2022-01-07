@@ -1,0 +1,3 @@
+platform: switch
+name: reading_lamp
+entity_id: switch.reading_lamp_socket_1

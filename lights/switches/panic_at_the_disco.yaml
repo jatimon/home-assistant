@@ -1,0 +1,3 @@
+platform: switch
+name: panic_at_the_disco
+entity_id: switch.panic_at_the_disco_socket_1

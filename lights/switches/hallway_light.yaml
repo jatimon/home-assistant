@@ -1,0 +1,3 @@
+platform: switch
+name: hallway_light
+entity_id: switch.hallway_light

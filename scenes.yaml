@@ -1,0 +1,40 @@
+- id: '1639871769876'
+  name: Backyard Mood
+  entities:
+    light.shelly_rgbw2_a77e6c_light_0:
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - hs
+      - rgbw
+      friendly_name: Landscape Light 3
+      supported_features: 189
+      state: 'off'
+    light.shelly_rgbw2_a88ea5_light_0:
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - hs
+      - rgbw
+      friendly_name: Landscape Light 2
+      supported_features: 189
+      state: 'off'
+    light.shelly_rgbw2_a8963f_light_0:
+      effect_list:
+      - 'Off'
+      - Meteor Shower
+      - Gradual Change
+      - Flash
+      supported_color_modes:
+      - hs
+      - rgbw
+      friendly_name: Landscape Light 1
+      supported_features: 189
+      state: 'off'
+  icon: mdi:palette

@@ -1,0 +1,16 @@
+alias: "TuyaIOT Restart"
+trigger:
+  - platform: event
+    event_type: system_log_event
+    event_data:
+      level: ERROR
+      name: tuya_iot
+condition:
+  - condition: template
+    value_template: >-
+      {{ "error while get mqtt config" in trigger.event.data.message[0] }}
+action:
+  - service: homeassistant.reload_config_entry
+    data:
+      entity_id:
+        - light.fence_lights_socket_1

@@ -1,0 +1,8 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.hallway_motion_sensor
+  to: 'on'
+action:
+  service: switch.turn_on
+  entity_id: switch.hallway_light
+alias: motion hallway light on

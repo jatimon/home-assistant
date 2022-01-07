@@ -1,0 +1,3 @@
+platform: switch
+name: patio_lights
+entity_id: switch.patio_lights_socket_1

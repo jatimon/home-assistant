@@ -1,0 +1,38 @@
+#========================
+# Pool Sensors
+#========================
+- platform: mqtt
+  name: "Pool Temperature"
+  device_class: "temperature"
+  state_topic: "homie/PoolDuino-pool/temperature/degrees"
+  unique_id: "poolduino_pool_temperature"
+
+#========================
+# RF Gateware Sensors
+#========================
+- platform: mqtt
+  name: "Garage Man Door Sensor Battery Level"
+  device_class: "battery"
+  state_topic: "rfgateway1-out/6/255/3/0/0"
+  unique_id: "garage_man_door_battery_level"
+
+- platform: mqtt
+  name: "Garage Man Door Sensor Battery Voltage"
+  device_class: "voltage"
+  state_topic: "rfgateway1-out/6/2/1/0/48"
+  unique_id: "garage_man_door_battery_voltage"
+
+- platform: mqtt
+  name: "Basement Slider Sensor Battery Level"
+  device_class: "battery"
+  state_topic: "rfgateway1-out/7/255/3/0/0"
+  unique_id: "basement_slider_battery_level"
+
+- platform: mqtt
+  name: "Basement Slider Sensor Battery Voltage"
+  device_class: "voltage"
+  state_topic: "rfgateway1-out/7/2/1/0/48"
+  unique_id: "basement_slider_battery_voltage"
+
+
+

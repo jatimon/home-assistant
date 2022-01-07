@@ -1,0 +1,3 @@
+platform: switch
+name: front_door_light
+entity_id: switch.front_door_light

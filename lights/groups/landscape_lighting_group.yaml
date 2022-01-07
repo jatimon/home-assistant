@@ -1,0 +1,8 @@
+platform: group
+name: Landscape Lighting
+unique_id: landscape_light_group
+entities:
+  - light.landscape_light_1
+  - light.landscape_light_2
+  - light.landscape_light_3
+  - light.bar_light

@@ -1,0 +1,14 @@
+alias: Notify Wash Cycle Completed
+trigger:
+  - entity_id: sensor.washing_maching_is_running
+    platform: state
+    to: "false"
+    for:
+      minutes: 1
+action:
+  service: notify.alexa_media_kitchen
+  data:
+    message: "The washing machine has finished its cycle"
+    title: Washing Machine Done
+    data:
+      type: tts

@@ -1,0 +1,9 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.kitchen_motion_sensor
+  to: 'off'
+  for: 00:05:00
+action:
+- service: switch.turn_off
+  entity_id: switch.kitchen_light
+alias: motion kitchen light off

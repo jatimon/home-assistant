@@ -1,0 +1,9 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.shelly_motion_60a423872a6c_motion
+  to: 'off'
+  for: 00:05:00
+action:
+  service: switch.turn_off
+  entity_id: switch.side_yard_light
+alias: motion side yard light off

@@ -1,0 +1,8 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.garage_motion_new
+  to: 'on'
+action:
+  service: switch.turn_on
+  entity_id: switch.garage_lights
+alias: motion garage light on

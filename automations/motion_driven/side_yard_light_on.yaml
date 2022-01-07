@@ -1,0 +1,12 @@
+trigger:
+- platform: state
+  entity_id: binary_sensor.shelly_motion_60a423872a6c_motion
+  to: 'on'
+condition:
+- condition: sun
+  before: sunrise
+  after: sunset
+action:
+- service: switch.turn_on
+  entity_id: switch.side_yard_light
+alias: motion side yard light on

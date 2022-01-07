@@ -1,0 +1,53 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+# My own handmade automations
+automation: !include_dir_list automations/
+# Automations I create in the UI
+# automation ui: !include automations.yaml
+light: !include_dir_list lights
+script: !include scripts.yaml
+scene: !include scenes.yaml
+binary_sensor: !include binary_sensors.yaml
+sensor: !include sensors.yaml
+switch: !include switches.yaml
+template: !include templates.yaml
+python_script:
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.automation: debug
+    homeassistant.components.mysensors: debug
+    mysensors: debug
+
+homeassistant:
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+
+panel_iframe:
+  vscode:
+    title: "VSCode"
+    url: "http://mediastore:8080"
+    icon: mdi:bug
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  project_id: !secret nest_project_id
+
+# REally crappy tuya hack
+system_log:
+  fire_event: true
+
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+  reload: always
+  force_update: [power]
+  sensors: [power, current, voltage]

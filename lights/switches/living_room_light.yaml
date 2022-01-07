@@ -1,0 +1,3 @@
+platform: switch
+name: living_room_light
+entity_id: switch.living_room_light_socket_1

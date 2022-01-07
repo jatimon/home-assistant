@@ -1,0 +1,3 @@
+platform: switch
+name: side_yard_light
+entity_id: switch.side_yard_light

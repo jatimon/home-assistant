@@ -1,0 +1,9 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.tuyatec_zn9wyqtr_rh3040_340120fe_ias_zone
+  to: 'off'
+  for: 00:02:00
+action:
+  service: switch.turn_off
+  entity_id: switch.garage_fridge_light
+alias: motion garage fridge light off

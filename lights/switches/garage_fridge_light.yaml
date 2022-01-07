@@ -1,0 +1,3 @@
+platform: switch
+name: garage_fridge_light
+entity_id: switch.garage_fridge_light

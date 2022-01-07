@@ -1,0 +1,3 @@
+platform: switch
+name: laundry_light
+entity_id: switch.laundry_light

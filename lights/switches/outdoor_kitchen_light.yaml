@@ -1,0 +1,3 @@
+platform: switch
+name: outdoor_kitchen_light
+entity_id: switch.outdoor_kitchen_light

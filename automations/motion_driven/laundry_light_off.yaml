@@ -1,0 +1,9 @@
+trigger:
+  platform: state
+  entity_id: binary_sensor.tuyatec_zn9wyqtr_rh3040_5c3522fe_ias_zone
+  to: 'off'
+  for: 00:05:00
+action:
+- service: switch.turn_off
+  entity_id: switch.laundry_light
+alias: motion laundry light off

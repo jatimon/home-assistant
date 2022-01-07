@@ -1,0 +1,12 @@
+alias: Heating pad in the office is on
+trigger:
+  platform: time
+  at: "17:00"
+condition:
+  - condition: state
+    entity_id: switch.office_heating_pad_switch
+    state: "on"
+action:
+  service: switch.turn_off
+  target:
+    entity_id: switch.office_heating_pad_switch

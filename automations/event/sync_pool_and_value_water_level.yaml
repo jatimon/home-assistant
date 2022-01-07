@@ -1,0 +1,9 @@
+trigger:
+- platform: mqtt
+  topic: homie/PoolDuino-pool/level/level
+action:
+  service: mqtt.publish
+  data:
+    topic: poolduino-valve/waterlevel
+    payload: '{{ trigger.payload }}'
+alias: Event sync pool and value water level
