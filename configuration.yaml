@@ -31,20 +31,16 @@ homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
 
-panel_iframe:
-  vscode:
-    title: "VSCode"
-    url: "http://mediastore:8080"
-    icon: mdi:bug
+# panel_iframe:
+# vscode:
+# title: "VSCode"
+# url: "http://mediastore:8080"
+# icon: mdi:bug
 
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
-
-# Google Wifi
-sensor:
-  - platform: google_wifi
 
 # REally crappy tuya hack
 system_log:
