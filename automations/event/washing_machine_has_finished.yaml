@@ -1,6 +1,6 @@
 alias: Notify Wash Cycle Completed
 trigger:
-  - entity_id: sensor.washing_maching_is_running
+  - entity_id: sensor.washing_machine_is_running
     platform: state
     to: "false"
     for:

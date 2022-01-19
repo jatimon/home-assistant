@@ -1,0 +1,7 @@
+platform: group
+name: Garage lights
+unique_id: garage_light_group
+entities:
+  - light.garage_fridge_light
+  - light.laundry_light
+  - light.garage_lights

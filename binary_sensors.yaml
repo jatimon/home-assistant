@@ -46,3 +46,41 @@
   payload_off: "0"
   device_class: "door"
   unique_id: "basement_slider__state"
+
+# Time of day sensor
+- platform: workday
+  country: US
+  workdays: [mon, tue, wed, thu, fri]
+  excludes: [sat, sun, holiday]
+  add_holidays:
+    - "2020-10-09"
+    - "2020-10-15"
+    - "2020-10-16"
+
+- platform: tod
+  name: Early Morning
+  after: sunrise
+  after_offset: "-00:45"
+  before: "08:00"
+
+- platform: tod
+  name: Morning
+  after: "08:00"
+  before: "12:00"
+
+- platform: tod
+  name: Afternoon
+  after: "12:00"
+  before: sunset
+  before_offset: "-02:30"
+
+- platform: tod
+  name: Evening
+  after: sunset
+  after_offset: "-02:30"
+  before: "20:30"
+
+- platform: tod
+  name: Night
+  after: "20:30"
+  before: "23:59"

@@ -19,6 +19,7 @@ switch: !include switches.yaml
 template: !include templates.yaml
 zone: !include zones.yaml
 python_script:
+input_boolean: !include_dir_named input_booleans
 
 logger:
   default: warning
@@ -42,7 +43,11 @@ nest:
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
 
-# REally crappy tuya hack
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+  # Really crappy tuya hack
 system_log:
   fire_event: true
 
@@ -52,3 +57,19 @@ sonoff:
   reload: always
   force_update: [power]
   sensors: [power, current, voltage]
+
+# InfluxDB
+influxdb:
+  host: 192.168.86.248
+  port: 8086
+  ssl: false
+  database: homeassistant
+  username: !secret influxdb_user
+  password: !secret influxdb_password
+  max_retries: 3
+  measurement_attr: entity_id
+  include:
+    domains:
+      - sensor
+
+momentary:

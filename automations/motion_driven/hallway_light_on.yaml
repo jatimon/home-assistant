@@ -1,7 +1,11 @@
 trigger:
   platform: state
   entity_id: binary_sensor.hallway_motion_sensor
-  to: 'on'
+  to: "on"
+condition:
+  condition: state
+  entity_id: input_boolean.house_is_asleep
+  state: "off"
 action:
   service: switch.turn_on
   entity_id: switch.hallway_light

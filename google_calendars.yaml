@@ -1,0 +1,28 @@
+- cal_id: en.canadian#holiday@group.v.calendar.google.com
+  entities:
+    - device_id: holidays_in_canada
+      ignore_availability: true
+      name: Holidays in Canada
+      track: true
+
+- cal_id: john.a.timon@gmail.com
+  entities:
+    - device_id: john_a_timon_gmail_com
+      ignore_availability: true
+      name: john.a.timon@gmail.com
+      track: true
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+    - device_id: birthdays
+      ignore_availability: true
+      name: Birthdays
+      track: true
+
+- cal_id: 1hlanbgu9hjnp7pgmht28pgh3s@group.calendar.google.com
+  entities:
+    - device_id: chez_timon
+      ignore_availability: true
+      name: Chez Timon
+      track: true
+      max_results: 42
