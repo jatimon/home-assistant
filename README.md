@@ -25,3 +25,16 @@
 
 ### Party Time
 * when the back yard disco ball is on, make the pool, landscape, and bar lights cycle color changes to compliment the disco ball
+
+### Blind Control
+* at a specified time lower blinds in the living room
+    * also maybe adjust for if the TV gets turned on
+
+### detect when we are not at home and put the home in Away Mode
+* In away mode, lights come on at dark and go off and some time around 'Bedtime'
+
+
+
+## Intergrations to add?
+* presence detection; owntrack, gps logger, icloud platform 
+* geolocation triggering
