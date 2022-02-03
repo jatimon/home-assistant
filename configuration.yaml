@@ -26,7 +26,7 @@ logger:
   logs:
     homeassistant.components.automation: debug
     homeassistant.components.mysensors: debug
-    mysensors: debug
+    emporia_vue: debug
 
 homeassistant:
   customize: !include customize.yaml

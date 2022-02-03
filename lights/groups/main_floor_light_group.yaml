@@ -7,7 +7,6 @@ entities:
   - light.front_door_light
   - light.cork_lamp
   - light.entryway_light
-  - light.front_door_light
   - light.living_room_light
   - light.santa_decorator
   - light.christmas_tree

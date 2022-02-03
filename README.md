@@ -33,7 +33,7 @@
 ### detect when we are not at home and put the home in Away Mode
 * In away mode, lights come on at dark and go off and some time around 'Bedtime'
 
-
+### Whole house power monitoring via Emporia
 
 ## Intergrations to add?
 * presence detection; owntrack, gps logger, icloud platform 

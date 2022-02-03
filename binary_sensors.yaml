@@ -1,13 +1,13 @@
 #========================
 # Valve Binary Sensor
 #========================
-- platform: mqtt
-  name: "Pool Valve State"
-  state_topic: "poolduino-valve/valveState"
-  payload_on: "1"
-  payload_off: "0"
-  device_class: "running"
-  unique_id: "poolduino-valve__state"
+#- platform: mqtt
+#  name: "Pool Valve State"
+#  state_topic: "poolduino-valve/valveState"
+#  payload_on: "1"
+#  payload_off: "0"
+#  device_class: "running"
+#  unique_id: "poolduino-valve__state"
 
 #========================
 # Pool Binary Sensor
@@ -22,30 +22,30 @@
 #========================
 # Pool Valve Binary Sensor
 #========================
-- platform: mqtt
-  name: "Pool Valve Water Level"
-  state_topic: "poolduino-valve/waterLevel"
-  unique_id: "poolduino-valve__waterlevel"
-  payload_off: "High"
-  payload_on: "Low"
+#- platform: mqtt
+#  name: "Pool Valve Water Level"
+#  state_topic: "poolduino-valve/waterLevel"
+#  unique_id: "poolduino-valve__waterlevel"
+#  payload_off: "High"
+#  payload_on: "Low"
 
 #========================
 # RF Gateway Binary Sensor
 #========================
-- platform: mqtt
-  name: "Man Door"
-  state_topic: "rfgateway1-out/6/1/1/0/16"
-  payload_on: "1"
-  payload_off: "0"
-  device_class: "door"
-  unique_id: "man_door__state"
-- platform: mqtt
-  name: "Basement Slider Door"
-  state_topic: "rfgateway1-out/7/1/1/0/16"
-  payload_on: "1"
-  payload_off: "0"
-  device_class: "door"
-  unique_id: "basement_slider__state"
+#- platform: mqtt
+#  name: "Man Door"
+#  state_topic: "rfgateway1-out/6/1/1/0/16"
+#  payload_on: "1"
+#  payload_off: "0"
+#  device_class: "door"
+#  unique_id: "man_door__state"
+#- platform: mqtt
+#  name: "Basement Slider Door"
+#  state_topic: "rfgateway1-out/7/1/1/0/16"
+#  payload_on: "1"
+#  payload_off: "0"
+#  device_class: "door"
+#  unique_id: "basement_slider__state"
 
 # Time of day sensor
 - platform: workday

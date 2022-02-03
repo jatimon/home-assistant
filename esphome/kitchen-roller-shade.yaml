@@ -1,0 +1,250 @@
+substitutions:
+  devicename: rollerblind-kitchen
+  devicestring: Rollerblind Kitchen
+
+esphome:
+  name: $devicename
+  platform: ESP8266
+  board: d1_mini
+  esp8266_restore_from_flash: true
+  on_boot: 
+    priority: 550.0
+    then:
+      # 1. Set stepper current position as stored in memory
+      # 2. Present down value set for down_position (where is "down")
+      # 3. If it is the same as down position, update the state of the switch
+      - lambda: |-
+            id(my_stepper).report_position(id(last_known_position));
+            id(bed_down_pos).publish_state(id(down_position));
+            if (id(last_known_position)==id(down_position)){
+              id(rollerblind_bed_down).publish_state('ON');
+            }
+
+globals:
+  # The actual position of the rollerblind
+  - id: last_known_position
+    type: int
+    restore_value: true
+    initial_value: '1'
+  # The number of steps to reach to the down position of the rollerblind
+  - id: down_position
+    type: int
+    restore_value: true
+    initial_value: '0'
+
+# Enable logging
+logger:
+  level: DEBUG
+
+api:
+
+ota:
+  password: "205ce855dd3ffad63df8d00bf6454be5"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: $devicename
+    password: "uyjKNjoIv9Aj"
+
+captive_portal:
+
+stepper:
+  - platform: uln2003
+    id: my_stepper
+    # Reversed order as it turned the wrong way
+    pin_a: D4
+    pin_b: D2
+    pin_c: D3
+    pin_d: D1
+    max_speed: 675 steps/s
+    sleep_when_done: true
+
+    # Optional:
+    acceleration: inf
+    deceleration: inf
+
+
+sensor:
+  # Reporting current position
+  - platform: template
+    name: $devicestring Down position
+    id: bed_down_pos
+  # Kitched Illuminance Sensor
+  - platform: adc
+    pin: A0
+    name: "Kitchen LUX"
+    device_class: illuminance
+    unit_of_measurement: lx
+    filters:
+      - lambda: |-
+          return (x * 3.3 / 10000.0) * 2000000.0;
+
+switch:
+  # Save current position to 0
+  - platform: template
+    name: $devicestring Save Top Position
+    id: reset_switch
+    turn_on_action:
+      then:
+        # Reset DOWN
+        - switch.template.publish:
+            id: move_down
+            state: OFF
+        # Reset UP
+        - switch.template.publish:
+            id: move_up
+            state: OFF
+        # Reset stepper position
+        - stepper.report_position:
+            id: my_stepper
+            position: 0
+        - stepper.set_target:
+            id: my_stepper
+            target: 0
+        # Save global variable for reboot
+        - lambda: |-
+            id(last_known_position) = 0;
+
+  # Save current position to max down
+  - platform: template
+    name: $devicestring Save Down Position
+    id: save_down_switch
+    turn_on_action:
+      then:
+        # Reset DOWN
+        - switch.template.publish:
+            id: move_down
+            state: OFF
+        # Reset UP
+        - switch.template.publish:
+            id: move_up
+            state: OFF
+        # Save global variable for reboot down_position
+        # Save current position
+        # Update sensor with stored value
+        # Set position as in DOWN state (switch)
+        - lambda: |-
+            id(down_position) = id(my_stepper).current_position;
+            id(last_known_position) = id(down_position);
+            id(bed_down_pos).publish_state(id(down_position));
+            id(rollerblind_bed_down).publish_state(true);
+        - logger.log:
+            format: "Saving down position %.1i"
+            args: [ 'id(down_position)']
+
+  - platform: template
+    name: $devicestring Down
+    id: move_down
+    turn_on_action:
+      # Enable switch
+      - switch.template.publish:
+          id: move_down
+          state: ON
+      # Reset back
+      - switch.template.publish:
+          id: move_up
+          state: OFF
+      # Reset master
+      - switch.template.publish:
+          id: rollerblind_bed_down
+          state: OFF  
+      # Set current position to last_known
+      - lambda: |-
+          id(last_known_position) = id(my_stepper).current_position;
+      # Set to move long
+      - lambda: |-
+          id(my_stepper).set_target(1000000);
+    turn_off_action:
+      - switch.template.publish:
+          id: move_down
+          state: OFF
+      # Stop motor and report position
+      - lambda: |-
+          id(last_known_position) = id(my_stepper).current_position;
+          id(my_stepper).set_target(id(last_known_position));
+      - logger.log:
+          format: "Current position (down) %.1i"
+          args: [ 'id(last_known_position)']
+
+  - platform: template
+    name: $devicestring Up
+    id: move_up
+    turn_on_action:
+      # Enable switch
+      - switch.template.publish:
+          id: move_up
+          state: ON
+      # Reset down
+      - switch.template.publish:
+          id: move_down
+          state: OFF
+      # Reset master
+      - switch.template.publish:
+          id: rollerblind_bed_down
+          state: OFF
+      # Set current position to last_known
+      - lambda: |-
+          id(last_known_position) = id(my_stepper).current_position;
+      # Set to move long
+      - lambda: |-
+          id(my_stepper).set_target(-1000000);
+    turn_off_action:
+      - switch.template.publish:
+          id: move_up
+          state: OFF
+      # Stop motor and report position
+      - lambda: |-
+          id(last_known_position) = id(my_stepper).current_position;
+          id(my_stepper).set_target(id(last_known_position));
+      - logger.log:
+          format: "Current position (up) %.1i"
+          args: [ 'id(last_known_position)']
+
+  - platform: template
+    name: $devicestring Closed
+    id: rollerblind_bed_down
+    turn_on_action:
+      # Reset DOWN and UP manual
+      - switch.template.publish:
+          id: move_up
+          state: OFF
+      - switch.template.publish:
+          id: move_down
+          state: OFF
+      # Enable switch
+      - switch.template.publish:
+          id: rollerblind_bed_down
+          state: ON
+      # Set last_known_position to the final position
+      #   It might not necessarily be the final position and
+      #   Can be a challenge if power breaks upon moving
+      - lambda: |-
+          id(last_known_position) = id(down_position);
+          id(my_stepper).set_target(id(down_position));
+    turn_off_action:
+      - switch.template.publish:
+          id: rollerblind_bed_down
+          state: OFF
+      # Set last_known_position to the start position (0)
+      #   It might not necessarily be the start position and
+      #   Can be a challenge if power breaks upon moving
+      - lambda: |-
+          id(last_known_position) = 0;
+          id(my_stepper).set_target(0);
+
+# On a regular basis store the position of the roller blind
+#   Don't do it too frequently as it might impact the move of the blind
+time:
+  - platform: sntp
+    id: sntp_time
+    on_time:
+      # Every 5 minutes
+      - seconds: 0
+        minutes: /5
+        then:
+          - lambda: |-
+              id(last_known_position) = id(my_stepper).current_position;
