@@ -7,3 +7,13 @@ sensor:
     {% else %}
       false
     {% endif %}
+
+sensor:
+  unique_id: dryer_sensor
+  name: Dryer is Running
+  state: >-
+    {% if states('sensor.dryer_16_1min')|float > 10 %}
+      true
+    {% else %}
+      false
+    {% endif %}

@@ -1,0 +1,5 @@
+platform: mqtt
+name: "Pool Temperature"
+device_class: "temperature"
+state_topic: "homie/PoolDuino-pool/temperature/degrees"
+unique_id: "poolduino_pool_temperature"

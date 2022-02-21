@@ -1,7 +1,0 @@
-trigger:
-  - platform: state
-    entity_id: binary_sensor.man_door
-    to: Closed
-action:
-    service: switch.turn_off
-    entity_id: switch.side_yard_light

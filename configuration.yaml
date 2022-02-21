@@ -14,7 +14,7 @@ light: !include_dir_list lights
 script: !include scripts.yaml
 scene: !include scenes.yaml
 binary_sensor: !include binary_sensors.yaml
-sensor: !include sensors.yaml
+sensor: !include_dir_list sensors/
 switch: !include switches.yaml
 template: !include templates.yaml
 zone: !include zones.yaml
@@ -31,12 +31,6 @@ logger:
 homeassistant:
   customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
-
-# panel_iframe:
-# vscode:
-# title: "VSCode"
-# url: "http://mediastore:8080"
-# icon: mdi:bug
 
 nest:
   client_id: !secret nest_client_id

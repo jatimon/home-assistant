@@ -84,3 +84,11 @@
   name: Night
   after: "20:30"
   before: "23:59"
+
+## Presence Sensor
+- platform: template
+  sensors:
+    anyone_home:
+      device_class: presence
+      friendly_name: "Anyone Home"
+      value_template: "{{ states.person | selectattr('state','eq','home') | list | count > 0 }}"
