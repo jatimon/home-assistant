@@ -1,0 +1,14 @@
+alias: Notify Dryer Cycle Completed
+trigger:
+  - entity_id: sensor.dryer_is_running
+    platform: state
+    to: "false"
+    for:
+      minutes: 1
+action:
+  service: notify.alexa_media_kitchen
+  data:
+    message: "The dryer has finished its cycle"
+    title: Dryer Done
+    data:
+      type: tts

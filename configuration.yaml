@@ -16,7 +16,7 @@ scene: !include scenes.yaml
 binary_sensor: !include binary_sensors.yaml
 sensor: !include_dir_list sensors/
 switch: !include switches.yaml
-template: !include templates.yaml
+template: !include_dir_list templates/
 zone: !include zones.yaml
 python_script:
 input_boolean: !include_dir_named input_booleans
