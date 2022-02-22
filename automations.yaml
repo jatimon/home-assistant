@@ -1,11 +1,1 @@
-- id: "1642553799686"
-  alias: Low battery level detection & notification for all battery sensors
-  description: ""
-  use_blueprint:
-    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
-    input:
-      actions:
-        - service: notify.mobile_app_johns_telemaphone
-          data:
-            message: Low battery for {{ sensors }}
-            title: Low battery warning
+
