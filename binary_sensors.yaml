@@ -85,6 +85,11 @@
   after: "20:30"
   before: "23:59"
 
+- platform: tod
+  name: Work Hours
+  after: "08:00"
+  before: "16:00"
+
 ## Presence Sensor
 - platform: template
   sensors:
