@@ -52,6 +52,26 @@ sonoff:
   force_update: [power]
   sensors: [power, current, voltage]
 
+panel_custom:
+  - name: ha_integ
+    sidebar_title: Integrations
+    sidebar_icon: mdi:chip
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: "config/integrations"
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_auto
+    sidebar_title: Automations
+    sidebar_icon: mdi:cog-outline
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: "config/automation"
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+
 # InfluxDB
 influxdb:
   host: 192.168.86.248
