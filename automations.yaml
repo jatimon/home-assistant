@@ -1,1 +1,16 @@
-
+- id: '1650131076128'
+  alias: Lala feeds fish
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: e06cf39fe4347f342dc6523090ac68df
+    entity_id: binary_sensor.contact_front_door
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: dfc1d4692f2a9717de79c1c2e128e0f4
+    entity_id: switch.living_room_light_socket_1
+    domain: switch
+  mode: single

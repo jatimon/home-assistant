@@ -1,0 +1,10 @@
+id: lala_feeding_fish_leaving
+alias: Lala has arrived to feed the fish
+trigger:
+  - entity_id: binary_sensor.contact_front_door
+    platform: state
+    to: "off"
+    for: "00:30:00"
+action:
+  service: light.turn_off
+  entity_id: light.living_room_light
