@@ -72,12 +72,12 @@
   name: Afternoon
   after: "12:00"
   before: sunset
-  before_offset: "-02:30"
+  before_offset: "-00:30"
 
 - platform: tod
   name: Evening
   after: sunset
-  after_offset: "-02:30"
+  after_offset: "-00:30"
   before: "20:30"
 
 - platform: tod

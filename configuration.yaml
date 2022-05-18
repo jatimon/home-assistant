@@ -22,11 +22,11 @@ python_script:
 input_boolean: !include_dir_named input_booleans
 
 logger:
-  default: warning
-  logs:
-    homeassistant.components.automation: debug
-    homeassistant.components.mysensors: debug
-    emporia_vue: debug
+  default: info
+#  logs:
+#    homeassistant.components.automation: debug
+#    homeassistant.components.mysensors: debug
+#    emporia_vue: debug
 
 homeassistant:
   customize: !include customize.yaml
@@ -72,18 +72,33 @@ panel_custom:
     config:
       ingress: core_configurator
 
-# InfluxDB
-influxdb:
-  host: 192.168.86.248
-  port: 8086
-  ssl: false
-  database: homeassistant
-  username: !secret influxdb_user
-  password: !secret influxdb_password
-  max_retries: 3
-  measurement_attr: entity_id
+## InfluxDB
+#influxdb:
+#  host: 192.168.86.248
+#  port: 8086
+#  ssl: false
+#  database: homeassistant
+#  username: !secret influxdb_user
+#  password: !secret influxdb_password
+#  max_retries: 3
+#  measurement_attr: entity_id
+#  include:
+#    domains:
+#      - sensor
+#
+momentary:
+
+# Example configuration.yaml entry with include and exclude
+recorder:
+  purge_keep_days: 5
   include:
     domains:
       - sensor
-
-momentary:
+      - switch
+      - media_player
+  exclude:
+    entities:
+      - sensor.last_boot
+      - sensor.date
+    entity_globs:
+      - sensor.weather_*

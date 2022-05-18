@@ -4,9 +4,9 @@ trigger:
   at: "17:00"
 condition:
   - condition: state
-    entity_id: switch.heating_pad
+    entity_id: switch.sonoff_100153c229
     state: "on"
 action:
   service: switch.turn_off
   target:
-    entity_id: switch.heating_pad
+    entity_id: switch.sonoff_100153c229

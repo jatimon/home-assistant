@@ -14,3 +14,19 @@
     entity_id: switch.living_room_light_socket_1
     domain: switch
   mode: single
+- id: '1652758039748'
+  alias: WIne Closet Light On
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: e15b7b21d76faf532b72387b4ed0261d
+    entity_id: binary_sensor.contact_wine_closet
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.wine_closet_light
+  mode: single
