@@ -4,5 +4,5 @@ trigger:
   to: 'on'
 action:
   service: switch.turn_on
-  entity_id: switch.laundry_light
+  entity_id: switch.laundry_light_switch
 alias: motion laundry light on

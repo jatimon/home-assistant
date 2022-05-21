@@ -90,7 +90,7 @@ momentary:
 
 # Example configuration.yaml entry with include and exclude
 recorder:
-  purge_keep_days: 5
+  purge_keep_days: 3
   include:
     domains:
       - sensor

@@ -5,5 +5,5 @@ trigger:
   for: 00:05:00
 action:
 - service: switch.turn_off
-  entity_id: switch.laundry_light
+  entity_id: switch.laundry_light_switch
 alias: motion laundry light off
