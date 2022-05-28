@@ -1,0 +1,10 @@
+alias: Master bedroom door open
+trigger:
+  - entity_id: binary_sensor.contact_master_bedroom
+    platform: state
+    to: "on"
+action:
+  service: notify.mobile_app_johns_telemaphone
+  data:
+    message: "The Master Bedroom Door has opened"
+    title: "Master Bedroom Door"
