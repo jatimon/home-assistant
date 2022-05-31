@@ -3,8 +3,12 @@ trigger:
   - entity_id: binary_sensor.contact_master_bedroom
     platform: state
     to: "on"
+condition:
+  condition: state
+  entity_id: binary_sensor.anyone_home
+  state: "off"
 action:
-  service: notify.mobile_app_johns_telemaphone
+  service: notify.mobile_app_christine_timons_iphone_13
   data:
     message: "The Master Bedroom Door has opened"
     title: "Master Bedroom Door"
