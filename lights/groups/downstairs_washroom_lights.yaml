@@ -1,0 +1,9 @@
+platform: group
+name: Downstairs Washroom Lights
+unique_id: downstairs_washroom_lights
+entities:
+  - light.sengled_e11_g13_8d846703_level_on_off
+  - light.sengled_e11_g13_d1aa6203_level_on_off
+  - light.sengled_e11_g13_c0876703_level_on_off
+  - light.sengled_e11_g13_9a626203_level_on_off
+  - light.sengled_e11_g13_6a836703_level_on_off
