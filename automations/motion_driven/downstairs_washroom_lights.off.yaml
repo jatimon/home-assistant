@@ -2,7 +2,7 @@ trigger:
   platform: state
   entity_id: binary_sensor.4_in_1_sensor_home_security_motion_detection
   to: 'off'
-  for: 00:10:00
+  for: 00:05:00
 action:
 - service: light.turn_off
   entity_id: light.downstairs_washroom_lights
