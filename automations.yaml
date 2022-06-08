@@ -30,3 +30,12 @@
     target:
       entity_id: light.wine_closet_light
   mode: single
+- id: '1654655231684'
+  alias: Humidity Management
+  description: ''
+  use_blueprint:
+    path: dondochaka/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline.yaml
+    input:
+      humidity_sensor: sensor.4_in_1_sensor_humidity
+      reference_humidity_sensor: sensor.downstairs_humidity
+      fan_switch: switch.shelly1_98cdac2dbbe4
