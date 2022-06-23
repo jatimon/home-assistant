@@ -6,9 +6,7 @@ trigger:
     for:
       minutes: 1
 action:
-  service: notify.alexa_media_kitchen
+  service: notify.mobile_app_christine_timons_iphone_13
   data:
     message: "The dryer has finished its cycle"
     title: Dryer Done
-    data:
-      type: tts
