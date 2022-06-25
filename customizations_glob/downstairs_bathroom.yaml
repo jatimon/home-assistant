@@ -1,0 +1,24 @@
+# Led Vanity Lights
+sensor.smartenergy_metering_vanity_*:
+  integration: zigbee
+  manufacturer: sengled
+  location: wall
+  security_zone: none
+
+sensor.smartenergy_metering_summary_vanity_*:
+  integration: zigbee
+  manufacturer: sengled
+  location: wall
+  security_zone: none
+
+button.identify_light_*:
+  integration: zigbee
+  manufacturer: sengled
+  location: wall
+  security_zone: none
+
+light.level_on_off_vanity_*:
+  integration: zigbee
+  manufacturer: sengled
+  location: wall
+  security_zone: none

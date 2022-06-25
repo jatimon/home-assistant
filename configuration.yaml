@@ -29,8 +29,8 @@ logger:
 #    emporia_vue: debug
 
 homeassistant:
-  customize: !include customize.yaml
-  customize_glob: !include customize_glob.yaml
+  customize: !include_dir_merge_named customizations/
+  customize_glob: !include_dir_merge_named customizations_glob/
 
 nest:
   client_id: !secret nest_client_id
