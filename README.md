@@ -7,18 +7,36 @@
 * Control
   * Have simple voice activated or phone activated controls when the first principle is not possible
 
+## Naming Conventions
+
+I am adopting a concept I found in a [post](https://community.home-assistant.io/t/recommended-ways-to-manage-devices-and-entities-names/243815/13) which advocates using custom attributes for device metadata.
+
+The core ideas are short and simple names for entity ids.  Metadata will contain the fields that I might want to search on in a template using the `selectattr` search
+
+Entity naming conventions will follow:
+<domain>.<type>_<location>
+
+### Example
+binary_sensor.contact_front_door:
+  integration: zigbee
+  manufacturer: aqara
+  location: top
+  security_zone: entry point
+
+binary_sensor.contact_office_door:
+  integration: zigbee
+  manufacturer: aqara
+  location: top
+  security_zone: interior
+
+sensor.power_front_door:
+  integration: zigbee
+  manufacturer: aqara
+  location: top
+  battery: cr1632
+
 
 ## Automation Ideas
-
-### Smart Sleep Time
-* home goes into sleep mode,
-    * shuts off all lights, disabling appropriate motion sensors
-    * locks all doors and reports on failure
-    * sets state variable of sleep mode
-* In the morning automatically wake up, 
-    * enable motion sensors
-    * turn off front door light
-    * etc
 
 ### Unlock the front door
 * When a trusted person is recognized, unlock the front door
@@ -32,8 +50,6 @@
 
 ### detect when we are not at home and put the home in Away Mode
 * In away mode, lights come on at dark and go off and some time around 'Bedtime'
-
-### Whole house power monitoring via Emporia
 
 ## Intergrations to add?
 * presence detection; owntrack, gps logger, icloud platform 
