@@ -19,24 +19,27 @@ Entity naming conventions will follow:
 < domain >.< type >_< location >
 
 ### Example
+```
 binary_sensor.contact_front_door:
   integration: zigbee
   manufacturer: aqara
   location: top
   security_zone: entry point
-
+```
+```
 binary_sensor.contact_office_door:
   integration: zigbee
   manufacturer: aqara
   location: top
   security_zone: interior
-
+```
+```
 sensor.power_front_door:
   integration: zigbee
   manufacturer: aqara
   location: top
   battery: cr1632
-
+```
 
 ## Automation Ideas
 
