@@ -1,6 +1,6 @@
 trigger:
   platform: state
-  entity_id: binary_sensor.4_in_1_sensor_home_security_motion_detection
+  entity_id: binary_sensor.4_in_1_downstairs_bathroom_motion
   to: 'off'
   for: 00:05:00
 condition:
@@ -10,5 +10,5 @@ condition:
   state: "off"
 action:
 - service: light.turn_off
-  entity_id: light.downstairs_washroom_lights
+  entity_id: light.vanity_lights
 alias: motion ended downstairs washroom lights off

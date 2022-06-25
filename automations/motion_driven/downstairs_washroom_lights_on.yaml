@@ -1,8 +1,0 @@
-trigger:
-  platform: state
-  entity_id: binary_sensor.4_in_1_sensor_home_security_motion_detection
-  to: 'on'
-action:
-  service: light.turn_on
-  entity_id: light.downstairs_washroom_lights
-alias: motion downstairs washroom lights on
