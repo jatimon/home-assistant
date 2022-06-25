@@ -5,6 +5,7 @@
 * Convenience 
   * My home should make smart decisions without me having to hit a button or say a command
 * Control
+  * Where possible always have a physical override, i.e. a light switch.
   * Have simple voice activated or phone activated controls when the first principle is not possible
 
 ## Naming Conventions
