@@ -15,7 +15,8 @@ I am adopting a concept I found in a [post](https://community.home-assistant.io/
 The core ideas are short and simple names for entity ids.  Metadata will contain the fields that I might want to search on in a template using the `selectattr` search
 
 Entity naming conventions will follow:
-<domain>.<type>_<location>
+
+< domain >.< type >_< location >
 
 ### Example
 binary_sensor.contact_front_door:
