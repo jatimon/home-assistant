@@ -1,64 +1,9 @@
 # Shelly relay for fan and lights
-sensor.on_off_gang_box:
+sensor.shelly1_downstairs_bathroom_on_off:
   integration: shelly
   manufacturer: shelly
-  location: in_wall
-  security_zone: none 
+  location: bathroom 2 gang box
 
 # Door contact sensor
-sensor.temperature_door:
-  integration: zigbee
-  manufacturer: aqara
-  location: top
-  security_zone: none
-
-sensor.power_door:
-  integration: zigbee
-  manufacturer: aqara
-  location: top
-  security_zone: none
-  battery: cr1632
-
-binary_sensor.contact_door:
-  integration: zigbee
-  manufacturer: aqara
-  location: top
-  security_zone: none
-
-button.identify_door:
-  integration: zigbee
-  manufacturer: aqara
-  location: top
-  security_zone: none
-
-# 4 in 1 sensor
-sensor.temperature_ceiling:
-  integration: zwave
-  manufacturer: zooz
-  location: wall-ceiling corner
-  security_zone: none
-
-sensor.lux_ceiling:
-  integration: zwave
-  manufacturer: zooz
-  location: wall-ceiling corner
-  security_zone: none
-
-sensor.humidity_ceiling:
-  integration: zwave
-  manufacturer: zooz
-  location: wall-ceiling corner
-  security_zone: none
-
-binary_sensor.motion_ceiling:
-  integration: zwave
-  manufacturer: zooz
-  location: wall-ceiling corner
-  security_zone: none
-
-sensor.power_ceiling:
-  integration: zwave
-  manufacturer: zooz
-  location: wall-ceiling corner
-  security_zone: none
-  battery: cr123a
+binary_sensor.lumi_downstairs_bathroom_contact:
+  security_zone: interior

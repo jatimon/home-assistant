@@ -22,3 +22,46 @@ light.level_on_off_vanity_*:
   manufacturer: sengled
   location: wall
   security_zone: none
+
+######################################################################
+
+# Lumi Sensors
+sensor.lumi_*:
+  integration: zigbee
+  manufacturer: aqara
+
+binary_sensor.lumi_*:
+  integration: zigbee
+  manufacturer: aqara
+
+sensor.lumi_*_power:
+  battery: cr1632
+
+# Downstair Bathroom Lumi
+sensor.lumi_downstairs_bathroom_*):
+  location: bathroom door
+
+binary_sensor.lumi_downstairs_bathroom_*:
+  location: bathroom door
+
+
+######################################################################
+
+# 4 in 1 sensor
+sensor.4_in_1_*:
+  integration: zwave
+  manufacturer: zooz
+
+binary_sensor.4_in_1_*:
+  integration: zwave
+  manufacturer: zooz
+
+sensor.4_in_1_*_power:
+  battery: cr123a
+
+# Downstairs Bathroom 4 in 1
+sensor.4_in_one_downstairs_bathroom_*:
+  location: wall-ceiling corner
+
+binary_sensor.4_in_one_downstairs_bathroom_*:
+  location: wall-ceiling corner
