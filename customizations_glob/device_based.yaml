@@ -1,0 +1,32 @@
+# Lumi Sensors
+sensor.lumi_*:
+  integration: zigbee
+  manufacturer: aqara
+
+binary_sensor.lumi_*:
+  integration: zigbee
+  manufacturer: aqara
+
+sensor.lumi_*_power*:
+  battery_type: cr1632
+
+# 4 in 1 sensor
+sensor.4_in_1_*:
+  integration: zwave
+  manufacturer: zooz
+
+binary_sensor.4_in_1_*:
+  integration: zwave
+  manufacturer: zooz
+
+sensor.4_in_1_*_power:
+  battery_type: cr123a
+
+# Tuya Sensors
+switch.tuya_*:
+  integration: tuya
+  manufacturer: mixed
+
+binary_sensor.tuya_*:
+  integration: zigbee
+  manufacturer: mixed

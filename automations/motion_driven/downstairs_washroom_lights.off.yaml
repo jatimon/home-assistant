@@ -10,5 +10,5 @@ condition:
   state: "off"
 action:
 - service: light.turn_off
-  entity_id: light.vanity_lights
+  entity_id: light.downstairs_bathroom_vanity_lights
 alias: motion ended downstairs washroom lights off

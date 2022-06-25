@@ -4,8 +4,8 @@ unique_id: main_floor_light_group
 entities:
   - light.dining_room_light
   - light.kitchen_light
+  - light.living_room_light
   - light.cork_lamp
   - light.entryway_light
-  - light.living_room_light
   - light.santa_decorator
   - light.christmas_tree

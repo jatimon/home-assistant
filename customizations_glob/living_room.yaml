@@ -1,0 +1,8 @@
+# Living Room Sensors
+binary_sensor.lumi_living_room_contact_1:
+  location: left side, front window
+  security_zone: entry_point
+
+binary_sensor.lumi_living_room_contact_2:
+  location: right side, front window
+  security_zone: entry_point
