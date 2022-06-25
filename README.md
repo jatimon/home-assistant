@@ -16,29 +16,29 @@ The core ideas are short and simple names for entity ids.  Metadata will contain
 
 Entity naming conventions will follow:
 
-< domain >.< type >_< location >
+< domain >.< device >_< type >_< location >_< number *optional* >
 
 ### Example
 ```
-binary_sensor.contact_front_door:
+binary_sensor.lumi_contact_entryway:
   integration: zigbee
   manufacturer: aqara
-  location: top
+  location: front door
   security_zone: entry point
 ```
 ```
-binary_sensor.contact_office_door:
+binary_sensor.lumi_contact_office:
   integration: zigbee
   manufacturer: aqara
-  location: top
+  location: office door
   security_zone: interior
 ```
 ```
-sensor.power_front_door:
-  integration: zigbee
-  manufacturer: aqara
-  location: top
-  battery: cr1632
+light.led_bulb_level_on_off_downstairs_bathroom_5:
+  integration: zwave
+  manufacturer: sengled
+  location: ceiling-wall corner
+  battery: cr123a
 ```
 
 ## Automation Ideas
