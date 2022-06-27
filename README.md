@@ -10,36 +10,55 @@
 
 ## Naming Conventions
 
-I am adopting a concept I found in a [post](https://community.home-assistant.io/t/recommended-ways-to-manage-devices-and-entities-names/243815/13) which advocates using custom attributes for device metadata.
+### Devices
+Devices will be named according to their manufacturer
+i.e. **Shelly** 
 
-The core ideas are short and simple names for entity ids.  Metadata will contain the fields that I might want to search on in a template using the `selectattr` search
+Renaming newly added devices this way, will have the side effect of changing the entity ids of each of the device entities to match the beginning of the proposed entity naming convention.
+
+### Entities
+
+I am adopting a concept I found in a [post](https://community.home-assistant.io/t/recommended-ways-to-manage-devices-and-entities-names/243815/13) which advocates using custom attributes for entity metadata.
+
+The core ideas are:
+* short and simple names for entity ids.
+* 
+* Metadata will contain the fields that I might want to search on in a template using the `selectattr` 
 
 Entity naming conventions will follow:
 
-< domain >.< device >_< location >_< type >_< number *optional* >
+< domain >.< manufacturer >_< type >_< location >_< number *optional* >
 
 ### Examples
 ```
-binary_sensor.lumi_entryway_contact:
+binary_sensor.aqara_contact_entryway:
   integration: zigbee
-  manufacturer: aqara
   location: front door
   security_zone: entry point
 ```
 ```
-binary_sensor.lumi_office_contact:
+binary_sensor.aqara_contact_office:
   integration: zigbee
-  manufacturer: aqara
   location: office door
   security_zone: interior
 ```
 ```
-light.led_bulb_downstairs_bathroom_level_on_off_5:
+light.sengled_level_on_off_downstairs_bathroom_5:
   integration: zwave
-  manufacturer: sengled
-  location: ceiling-wall corner
-  battery: cr123a
-```
+  location: above vanity
+  ```
+
+## Security Zones
+I will use meta data to define an entity's security zone.  This way I can have an automation that ensures all entities in say security zone **entry point**  are locked/closed when the house goes to sleep or becomes unoccupied. 
+
+### Proposed Zones
+* entry point -- who saw that coming?
+* exterior 
+* interior
+* none
+
+This should allow straightforward simple filtering of devices for various automations/alerts
+
 
 ## Automation Ideas
 
