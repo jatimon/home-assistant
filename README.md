@@ -22,7 +22,7 @@ I am adopting a concept I found in a [post](https://community.home-assistant.io/
 
 The core ideas are:
 * short and simple names for entity ids.
-* 
+* grouping of similar devices is easy
 * Metadata will contain the fields that I might want to search on in a template using the `selectattr` 
 
 Entity naming conventions will follow:
