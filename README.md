@@ -27,7 +27,7 @@ The core ideas are:
 
 Entity naming conventions will follow:
 
-< domain >.< manufacturer >_< type >_< location >_< number *optional* >
+< domain > . < manufacturer > _ < type > _ < location > _ < number *optional* >
 
 ### Examples
 ```
