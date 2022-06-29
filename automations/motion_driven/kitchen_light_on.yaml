@@ -1,6 +1,6 @@
 trigger:
 - platform: state
-  entity_id: binary_sensor.kitchen_motion_sensor
+  entity_id: binary_sensor.tuyatec_kitchen_motion
   to: 'on'
 condition:
   condition: or

@@ -1,6 +1,6 @@
 trigger:
   platform: state
-  entity_id: binary_sensor.tuyatec_zn9wyqtr_rh3040_5c3522fe_ias_zone
+  entity_id: binary_sensor.tuyatec_laundry_room_motion
   to: 'on'
 action:
   service: switch.turn_on

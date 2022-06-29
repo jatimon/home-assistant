@@ -1,6 +1,6 @@
 trigger:
   platform: state
-  entity_id: binary_sensor.tuyatec_zn9wyqtr_rh3040_340120fe_ias_zone
+  entity_id: binary_sensor.tuyatec_garage_fridge_motion
   to: 'off'
   for: 00:02:00
 action:
