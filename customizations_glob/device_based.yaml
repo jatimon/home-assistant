@@ -20,10 +20,14 @@ binary_sensor.zooz_*:
   manufacturer: zooz
 
 # Tuya Sensors
-switch.tuya_*:
-  integration: tuya
-  manufacturer: mixed
-
-binary_sensor.tuya_*:
+sensor.tuyatec_*:
   integration: zigbee
-  manufacturer: mixed
+  manufacturer: soujamao
+
+binary_sensor.tuyatec_*:
+  integration: zigbee
+  manufacturer: soujamao
+
+# Default All Lumi contact sensors to be interior.  Overriding as needed
+binary_sensor.lumi*contact*:
+    security_zone: interior
