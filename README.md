@@ -25,25 +25,33 @@ The core ideas are:
 * grouping of similar devices is easy
 * Metadata will contain the fields that I might want to search on in a template using the `selectattr` 
 
-Entity naming conventions will follow:
+#### Sensors and Binary Sensors
 
-< domain > . < manufacturer > _ < type > _ < location > _ < number *optional* >
+< sensor|binary_sensor > . < manufacturer > _ < location > _ < type > _ < number *optional* >
 
-### Examples
+***Examples***
+
 ```
-binary_sensor.aqara_contact_entryway:
+binary_sensor.aqara_entryway_contact:
   integration: zigbee
   location: front door
   security_zone: entry point
 ```
 ```
-binary_sensor.aqara_contact_office:
+binary_sensor.aqara_office_contact:
   integration: zigbee
   location: office door
   security_zone: interior
 ```
+
+#### Controls
+
+Controls are lights and switches
+
+< domain > . < manufacturer > _ < location > _ < controlled thing > _ < number *optional* >
+
 ```
-light.sengled_level_on_off_downstairs_bathroom_5:
+light.sengled_downstairs_bathroom_vanity_light_5:
   integration: zwave
   location: above vanity
   ```
