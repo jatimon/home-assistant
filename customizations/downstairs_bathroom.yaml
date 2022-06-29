@@ -7,3 +7,7 @@ sensor.shelly1_downstairs_bathroom_on_off:
 # Door contact sensor
 binary_sensor.lumi_downstairs_bathroom_contact:
   security_zone: interior
+
+# Shelly 4 in 1 sensor
+sensor.zooz_downstairs_bathroom_power:
+  battery_type: cr123a

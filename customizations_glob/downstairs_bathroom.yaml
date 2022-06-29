@@ -17,7 +17,7 @@ button.identify_light_*:
   location: wall
   security_zone: none
 
-light.level_on_off_vanity_*:
+light.sengled_downstairs_bathroom_vanity_light_*:
   integration: zigbee
   manufacturer: sengled
   location: wall
@@ -31,8 +31,8 @@ binary_sensor.lumi_downstairs_bathroom_*:
   location: bathroom door
 
 # Downstairs Bathroom 4 in 1
-sensor.4_in_one_downstairs_bathroom_*:
+sensor.zooz_downstairs_bathroom_*:
   location: wall-ceiling corner
 
-binary_sensor.4_in_one_downstairs_bathroom_*:
+binary_sensor.zooz_downstairs_bathroom_*:
   location: wall-ceiling corner
