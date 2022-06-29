@@ -1,0 +1,2 @@
+binary_sensor.lumi_garage_man_door_contact:
+  security_zone: entry_point

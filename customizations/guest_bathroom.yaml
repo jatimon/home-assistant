@@ -1,0 +1,3 @@
+binary_sensor.lumi_guest_bathroom_contact:
+  security_zone: exterior
+  location: top left

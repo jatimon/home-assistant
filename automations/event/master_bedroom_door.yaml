@@ -1,6 +1,6 @@
 alias: Master bedroom door open
 trigger:
-  - entity_id: binary_sensor.lumi_master_bedroom_contact
+  - entity_id: binary_sensor.lumi_master_bedroom_contact_1
     platform: state
     to: "on"
 condition:

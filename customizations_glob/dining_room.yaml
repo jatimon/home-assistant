@@ -1,0 +1,3 @@
+binary_sensor.lumi_dining_room_contact_*:
+  security_zone: entry_point
+  location: top left
