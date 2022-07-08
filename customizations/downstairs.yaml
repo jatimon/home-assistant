@@ -1,3 +1,8 @@
 binary_sensor.lumi_downstairs_sliding_door_contact:
   security_zone: entry_point
   location: top left
+
+binary_sensor.kwickset_hallway_contact:
+  security_zone: entry_point
+  location: top left
+

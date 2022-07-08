@@ -1,6 +1,6 @@
 trigger:  
   platform: state
-  entity_id: binary_sensor.garage_motion_new
+  entity_id: binary_sensor.garage_motion_sensor_motion
   to: 'off'
   for: 00:03:00
 action:

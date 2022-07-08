@@ -1,8 +1,1 @@
-main_floor_windows_and_doors:
-  entities:
-    - binary_sensor.contact_fron_window_right
-    - binary_sensor.contact_front_window_left
-    - binary_sensor.contact_front_door
-    - binary_sensor.contact_garage_man_door
-    - binary_sensor.contact_storage_room
-    - binary_sensor.contact_basement_slider
+

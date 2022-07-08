@@ -10,16 +10,6 @@
 #  unique_id: "poolduino-valve__state"
 
 #========================
-# Pool Binary Sensor
-#========================
-- platform: mqtt
-  name: "Pool Water Level"
-  state_topic: "homie/PoolDuino-pool/level/level"
-  payload_on: "Low"
-  payload_off: "High"
-  unique_id: "pool_water__waterlevel"
-
-#========================
 # Pool Valve Binary Sensor
 #========================
 #- platform: mqtt

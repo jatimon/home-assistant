@@ -5,28 +5,20 @@ default_config:
 tts:
   - platform: google_translate
 
-group: !include groups.yaml
 # My own handmade automations
 automation: !include_dir_list automations/
-# Automations I create in the UI
-# automation ui: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
+group: !include groups.yaml
+input_boolean: !include_dir_named input_booleans
 light: !include_dir_list lights
+mqtt: !include_dir_merge_named  mqtt/
+python_script:
 script: !include scripts.yaml
 scene: !include scenes.yaml
-binary_sensor: !include binary_sensors.yaml
 sensor: !include_dir_list sensors/
 switch: !include switches.yaml
 template: !include_dir_list templates/
 zone: !include zones.yaml
-python_script:
-input_boolean: !include_dir_named input_booleans
-
-logger:
-  default: info
-#  logs:
-#    homeassistant.components.automation: debug
-#    homeassistant.components.mysensors: debug
-#    emporia_vue: debug
 
 homeassistant:
   customize: !include_dir_merge_named customizations/
@@ -37,9 +29,9 @@ nest:
   client_secret: !secret nest_client_secret
   project_id: !secret nest_project_id
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+# google:
+#   client_id: !secret google_client_id
+#   client_secret: !secret google_client_secret
 
   # Really crappy tuya hack
 system_log:
