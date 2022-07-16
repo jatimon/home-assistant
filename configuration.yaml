@@ -1,6 +1,11 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+logger:
+  default: info
+# logs:
+#   homeassistant.components.recorder: debug
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -80,24 +85,22 @@ panel_custom:
 #
 momentary:
 
-# Example configuration.yaml entry with include and exclude
-#recorder:
-#  purge_keep_days: 3
-#  include:
-#    domains:
-#      - sensor
-#      - switch
-#      - media_player
-#  exclude:
-#    entities:
-#      - sensor.last_boot
-#      - sensor.date
-#    entity_globs:
-#      - sensor.weather_*
-#      - sensor.*uptime*
+recorder:
+  db_url: !secret db_url
+  purge_keep_days: 3
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+  exclude:
+    entities:
+      - sensor.last_boot
+      - sensor.date
+    entity_globs:
+      - sensor.weather_*
+      - sensor.*uptime*
 
-  recorder:
-    db_url: !secret db_url
 
 input_text:
   alexa_actionable_notification:
