@@ -6,6 +6,8 @@
 !*.md
 !*/
 !python_scripts/*
+!node-red/flows.json
+!node-red/package.json
 
 # Ignore folders.
 .storage

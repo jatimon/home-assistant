@@ -1,0 +1,25 @@
+alias: Master Bathroom Door opens
+description: ''
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.lumi_master_bathroom_contact_1
+    from: 'off'
+    to: 'on'
+condition:
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.evening
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.night
+        state: 'on'
+action:
+  - service: python_script.dim_light
+    data:
+      entity_id: light.master_bathroom_led_lights
+      sleep_delay: 0.075
+      end_level_pct: 30
+      start_level_pct: 10
+mode: single

@@ -1,0 +1,19 @@
+alias: Shut off master bathroom led
+description: ''
+trigger:
+  - platform: state
+    entity_id:
+      - light.master_bathroom_led_lights
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.master_bathroom_led_lights
+mode: single

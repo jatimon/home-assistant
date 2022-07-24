@@ -39,3 +39,78 @@
       humidity_sensor: sensor.4_in_1_sensor_humidity
       reference_humidity_sensor: sensor.downstairs_humidity
       fan_switch: switch.shelly1_98cdac2dbbe4
+- id: '1658641741485'
+  alias: Master Bathroom Door opens
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.lumi_master_bathroom_power_1
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.evening
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.early_morning
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.night
+      state: 'on'
+  action:
+  - service: python_script.dim_light
+    data:
+      entity_id: light.master_bathroom_led_lights
+      sleep_delay: 0.075
+      end_level_pct: 30
+      start_level_pct: 10
+  mode: single
+- id: '1658642090367'
+  alias: Master Bathroom Door opens
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.lumi_master_bathroom_contact_1
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.evening
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.night
+      state: 'on'
+  action:
+  - service: python_script.dim_light
+    data:
+      entity_id: light.master_bathroom_led_lights
+      sleep_delay: 0.075
+      end_level_pct: 30
+      start_level_pct: 10
+  mode: single
+- id: '1658642412820'
+  alias: Shut off master bathroom led
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.master_bathroom_led_lights
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.master_bathroom_led_lights
+  mode: single
