@@ -1,5 +1,4 @@
 sensor:
-
   - name: "Pool Temperature"
     device_class: "temperature"
     state_topic: "homie/PoolDuino-pool/temperature/degrees"
@@ -11,3 +10,4 @@ sensor:
 #state_topic: "homie/PoolDuino-pool/temperature/degrees"
 #unique_id: "poolduino_pool_temperature"
 #unit_of_measurement: "°F"
+#

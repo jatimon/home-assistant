@@ -1,6 +1,8 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+api:
+
 logger:
   default: info
 # logs:
@@ -15,6 +17,7 @@ automation: !include_dir_list automations/
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 input_boolean: !include_dir_named input_booleans
+input_number: !include_dir_merge_list  input_numbers/
 light: !include_dir_list lights
 mqtt: !include_dir_merge_named  mqtt/
 python_script:

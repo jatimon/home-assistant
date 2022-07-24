@@ -1,0 +1,6 @@
+  platform: template
+  sensors:
+    proxmox_cpu_temp:
+      friendly_name: "Procesor"
+      value_template: '{{ states("input_number.proxmox_input_cpu_temp") }}'
+      unit_of_measurement: °C
