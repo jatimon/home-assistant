@@ -1,6 +1,0 @@
-platform: template
-sensors:
-  proxmox_isa_adapter:
-    friendly_name: "ISA adapter"
-    value_template: '{{ states("input_number.proxmox_input_isa_adapter") | multiply(0.001) | round(1) }}'
-    unit_of_measurement: °C

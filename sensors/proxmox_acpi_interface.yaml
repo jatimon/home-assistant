@@ -1,6 +1,0 @@
-platform: template
-sensors:
-  proxmox_acpi_interface:
-    friendly_name: "ACPI interface"
-    value_template: '{{ states("input_number.proxmox_input_acpi_interface") | multiply(0.001) | round(1) }}'
-    unit_of_measurement: °C
