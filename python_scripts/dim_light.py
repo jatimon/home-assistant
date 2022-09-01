@@ -5,18 +5,21 @@ end_level_pct = int(data.get('end_level_pct',100))
 step  = int(data.get('step_in_level',1))
 
 
-new_level_pct = start_level_pct
-while new_level_pct < end_level_pct :
-	logger.info(f"new {new_level_pct}, end {end_level_pct}")
+new_level = int((start_level_pct / 100) * 255)
+end_level = int((end_level_pct / 100) * 255)
+logger.info(f"new {start_level_pct}, end {end_level_pct}")
+while new_level < end_level :
 	states = hass.states.get(entity_id)
-	current_level_pct = states.attributes.get('brightness_pct') or 0
-	logger.info(f"current {current_level_pct}")
-	if (current_level_pct > end_level_pct) :
+	current_level = states.attributes.get('brightness') or 0
+	logger.info(f"current {current_level}")
+	if (current_level > end_level) :
 		logger.info('Exiting Fade In')
 		break;
 	else :
-		logger.info('Setting brightness of ' + str(entity_id) + ' from ' + str(current_level_pct) + ' to ' + str(new_level_pct))
-		data = { "entity_id" : entity_id, "brightness_pct" : new_level_pct }
+		logger.info('Setting brightness of ' + str(entity_id) + ' from ' + str(current_level) + ' to ' + str(new_level))
+		data = { "entity_id" : entity_id, "brightness" : new_level }
 		hass.services.call('light', 'turn_on', data)
-		new_level_pct = new_level_pct + step
+		new_level = new_level + step
 		time.sleep(sleep_delay)
+
+

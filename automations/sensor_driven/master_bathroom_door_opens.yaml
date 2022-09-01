@@ -15,11 +15,12 @@ condition:
       - condition: state
         entity_id: binary_sensor.night
         state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.kitchen_lux
+        below: 300
 action:
-  - service: python_script.dim_light
+  - service: light.turn_on
     data:
       entity_id: light.master_bathroom_led_lights
-      sleep_delay: 0.075
-      end_level_pct: 30
-      start_level_pct: 10
+      brightness: 20
 mode: single
