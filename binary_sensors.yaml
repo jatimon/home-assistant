@@ -1,42 +1,3 @@
-#========================
-# Valve Binary Sensor
-#========================
-#- platform: mqtt
-#  name: "Pool Valve State"
-#  state_topic: "poolduino-valve/valveState"
-#  payload_on: "1"
-#  payload_off: "0"
-#  device_class: "running"
-#  unique_id: "poolduino-valve__state"
-
-#========================
-# Pool Valve Binary Sensor
-#========================
-#- platform: mqtt
-#  name: "Pool Valve Water Level"
-#  state_topic: "poolduino-valve/waterLevel"
-#  unique_id: "poolduino-valve__waterlevel"
-#  payload_off: "High"
-#  payload_on: "Low"
-
-#========================
-# RF Gateway Binary Sensor
-#========================
-#- platform: mqtt
-#  name: "Man Door"
-#  state_topic: "rfgateway1-out/6/1/1/0/16"
-#  payload_on: "1"
-#  payload_off: "0"
-#  device_class: "door"
-#  unique_id: "man_door__state"
-#- platform: mqtt
-#  name: "Basement Slider Door"
-#  state_topic: "rfgateway1-out/7/1/1/0/16"
-#  payload_on: "1"
-#  payload_off: "0"
-#  device_class: "door"
-#  unique_id: "basement_slider__state"
-
 # Time of day sensor
 - platform: workday
   country: US
@@ -87,3 +48,18 @@
       device_class: presence
       friendly_name: "House Occupied"
       value_template: "{{ states.person | selectattr('state','eq','home') | list | count > 0 }}"
+
+# Ping gateway
+- platform: ping
+  host: 192.168.0.1
+  name: Gateway
+  count: 2
+  scan_interval: 30
+
+# Ping gateway
+- platform: ping
+  host: xfinity.com
+  name: Xfinith
+  count: 2
+  scan_interval: 30
+
