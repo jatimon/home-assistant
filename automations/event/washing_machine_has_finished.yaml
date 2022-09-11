@@ -11,7 +11,7 @@ condition:
     - person.christine
   state: "home"
 action:
-  service: notify.mobile_app_christine_timons_iphone_13
+  service: notify.mobile_app_christine_timons_iphone
   data:
     message: "The washing machine has finished its cycle"
     title: Washing Machine Done

@@ -52,14 +52,14 @@
 # Ping gateway
 - platform: ping
   host: 192.168.0.1
-  name: Gateway
+  name: Gateway Ping
   count: 2
   scan_interval: 30
 
 # Ping gateway
 - platform: ping
   host: xfinity.com
-  name: Xfinith
+  name: Xfinity
   count: 2
   scan_interval: 30
 
