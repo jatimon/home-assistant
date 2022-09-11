@@ -7,3 +7,10 @@ binary_sensor:
   payload_on: "Low"
   payload_off: "High"
   unique_id: "pool_water__waterlevel"
+
+- name: Garage Motion
+  state_topic: "shellies/GarageMotion/status"
+  value_template: "{{ value_json.motion }}"
+  device_class: motion
+  object_id: garage_motion_sensor_motion
+  unique_id: shelly_garage_motion_sensor_motion
