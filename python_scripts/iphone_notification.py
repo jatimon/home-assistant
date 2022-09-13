@@ -1,6 +1,7 @@
 message = data.get("message")
 title = data.get("title")
 device = data.get("device")
+data_field = data.get("data")
 
 if not any([message, title, device]):
     logging.info(
@@ -13,6 +14,8 @@ service_data = {
 "message": message,
 "title": title,
 }
+if data_field:
+    service_data['data'] = data_field
 
 logger.info("service data: %s, device: %s", service_data, device)
 
