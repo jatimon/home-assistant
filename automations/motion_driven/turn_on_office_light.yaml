@@ -9,7 +9,7 @@
     domain: binary_sensor
   condition:
   - condition: time
-    before: '17:00:00'
+    before: 17:00:00
     after: 07:00:00
     weekday:
     - mon
