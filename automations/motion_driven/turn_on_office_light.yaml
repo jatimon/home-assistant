@@ -1,25 +1,24 @@
-- id: '1663688912797'
-  alias: Office Light On
-  description: ''
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: e1086f7688dc98bb375f52ded19b8956
-    entity_id: binary_sensor.hue_office_motion_motion
-    domain: binary_sensor
-  condition:
-  - condition: time
-    before: 17:00:00
-    after: 07:00:00
-    weekday:
+id: '1663688912797'
+alias: Office Light On
+description: ''
+trigger:
+  type: occupied
+  platform: device
+  device_id: e1086f7688dc98bb375f52ded19b8956
+  entity_id: binary_sensor.hue_office_motion_motion
+  domain: binary_sensor
+condition:
+  condition: time
+  before: '17:00:00'
+  after: 07:00:00
+  weekday:
     - mon
     - tue
     - wed
     - thu
     - fri
-  action:
-  - service: switch.turn_on
-    data: {}
-    target:
-      entity_id: switch.office_light_switch
-  mode: single
+action:
+  service: switch.turn_on
+  data: {}
+  target:
+    entity_id: switch.office_light_switch

@@ -2,13 +2,13 @@ id: '1663687518380'
 alias: Warm my feet
 description: ''
 trigger:
-- type: occupied
+  type: occupied
   platform: device
   device_id: e1086f7688dc98bb375f52ded19b8956
   entity_id: binary_sensor.hue_office_motion_motion
   domain: binary_sensor
 condition:
-- condition: and
+  condition: and
   conditions:
   - type: is_temperature
     condition: device
@@ -17,7 +17,7 @@ condition:
     domain: sensor
     below: 70
   - condition: time
-    before: 17:00:00
+    before: '17:00:00'
     after: 07:00:00
     weekday:
     - mon
@@ -26,7 +26,7 @@ condition:
     - thu
     - fri
 action:
-- service: switch.turn_on
+  service: switch.turn_on
   data: {}
   target:
     area_id: office
