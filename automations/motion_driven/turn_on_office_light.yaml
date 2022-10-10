@@ -21,4 +21,4 @@ action:
   service: switch.turn_on
   data: {}
   target:
-    entity_id: switch.office_light_switch
+    entity_id: switch.zwave_office_ceiling_light
