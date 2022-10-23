@@ -26,3 +26,9 @@
       name: Chez Timon
       track: true
       
+
+- cal_id: 9ff0c42c0d0ab12819753cbe9b1aa824355428126d812098a593c8f3d235609b@group.calendar.google.com
+  entities:
+  - device_id: recharge_calendar
+    ignore_availability: true
+    name: Recharge Calendar
