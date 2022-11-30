@@ -1,6 +1,6 @@
-- platform: statistics
-  name: Downstairs Bathroom Humidity Average Linear 24h
-  entity_id: sensor.zooz_downstairs_bathroom_humidity
-  state_characteristic: average_linear
-  max_age:
-    hours: 24
+platform: statistics
+name: Downstairs Bathroom Humidity Average Linear 24h
+entity_id: sensor.zooz_downstairs_bathroom_humidity
+state_characteristic: average_linear
+max_age:
+  hours: 24
