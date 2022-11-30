@@ -1,0 +1,10 @@
+alias: Downstairs Bath Fan - TOGGLE
+trigger:
+- entity_id: binary_sensor.downstairs_bathroom_humidity_status
+  for: 00:00:30
+  platform: state
+condition: []
+action:
+- data:
+    entity_id: switch.dimmer_dry_contact_relay_2
+  service_template: switch.turn_{{trigger.to_state.state}}

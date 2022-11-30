@@ -48,7 +48,7 @@
       device_class: presence
       friendly_name: "House Occupied"
       value_template: "{{ states.person | selectattr('state','eq','home') | list | count > 0 }}"
-    master_bath_fan_sb:
+    downstairs_bathroom_humidity_status:
       friendly_name: Downstairs Bathroom Humidity Status
       value_template: >-
         {% set humid = states('sensor.zooz_downstairs_bathroom_humidity')|int(default=0) %}
