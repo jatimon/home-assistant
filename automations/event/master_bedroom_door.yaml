@@ -8,7 +8,7 @@ condition:
   entity_id: binary_sensor.anyone_home
   state: "off"
 action:
-  service: notify.mobile_app_christine_timons_iphone_13
+  service: notify.mobile_app_christine_timons_iphone
   data:
     message: "The Master Bedroom Door has opened"
     title: "Master Bedroom Door"
