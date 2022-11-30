@@ -55,7 +55,7 @@
         {% set avg = states('sensor.downstairs_bathroom_humidity_average_linear_24h')|int(default=0) %}
         {% set thresh = 5 %}
         {{ (humid - avg) > thresh }}
-      unique_id: "downstairs_bathrrom_humidity_status"
+      unique_id: "downstairs_bathroom_humidity_status"
 
 
 # Ping gateway
