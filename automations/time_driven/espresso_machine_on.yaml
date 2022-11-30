@@ -12,5 +12,5 @@ action:
 - service: switch.turn_on
   data: {}
   target:
-    device_id: 12023f5a19c854bbdd567e4d81df484b
+    entity_id: switch.espresso_machine
 mode: single
