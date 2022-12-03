@@ -5,9 +5,15 @@ trigger:
 - platform: time
   at: 06:00:00
 condition:
-- condition: state
-  entity_id: person.john_timon
-  state: home
+alias: "John or Oscar Present"
+condition: or
+conditions:
+  - condition: state
+    entity_id: person.john_timon
+    state: home
+  - condition: state
+    entity_id: person.oscar
+    state: home
 action:
 - service: switch.turn_on
   data: {}
