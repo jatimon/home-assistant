@@ -4,10 +4,8 @@ description: ''
 trigger:
 - platform: time
   at: 06:00:00
-condition:
-alias: "John or Oscar Present"
-condition: or
-conditions:
+condition: 
+  or:
   - condition: state
     entity_id: person.john_timon
     state: home
