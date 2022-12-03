@@ -5,3 +5,4 @@ unique_id: "downstairs bathroom average humidity"
 state_characteristic: average_linear
 max_age:
   hours: 24
+sampling_size: 20
