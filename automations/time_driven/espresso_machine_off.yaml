@@ -1,0 +1,12 @@
+id: "espressomachineoff"
+alias: Power Off Espresso Machine
+description: ""
+trigger:
+  - platform: time
+    at: 10:00:00
+action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.espresso_machine
+mode: single
