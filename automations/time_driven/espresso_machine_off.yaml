@@ -1,9 +1,10 @@
-id: "espressomachineoff"
+id: "1670254277871"
 alias: Power Off Espresso Machine
 description: ""
 trigger:
   - platform: time
-    at: 10:00:00
+    at: "10:00:00"
+condition: []
 action:
   - service: switch.turn_off
     data: {}
