@@ -16,5 +16,5 @@ action:
 - service: switch.turn_on
   data: {}
   target:
-    entity_id: switch.espresso_machine
+    entity_id: switch.espresso_machine_2
 mode: single
