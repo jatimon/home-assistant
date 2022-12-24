@@ -1,0 +1,7 @@
+platform: group
+name: christmas lights
+unique_id: christmas_lights_group
+entities:
+  - light.christmas_lights_1
+  - light.christmas_lights_2
+  - light.christmas_lights_3

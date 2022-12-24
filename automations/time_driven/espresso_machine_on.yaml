@@ -3,14 +3,11 @@ alias: Preheat Espresso Machine
 description: ''
 trigger:
 - platform: time
-  at: 06:00:00
+  at: 06:30:00
 condition: 
   or:
   - condition: state
     entity_id: person.john_timon
-    state: home
-  - condition: state
-    entity_id: person.oscar
     state: home
 action:
 - service: switch.turn_on
