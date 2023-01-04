@@ -2,6 +2,7 @@ alias: Notify Dryer Cycle Completed
 trigger:
   - entity_id: sensor.dryer_is_running
     platform: state
+    from: "true"
     to: "false"
     for:
       minutes: 1
