@@ -4,6 +4,6 @@ trigger:
   to: 'off'
   for: 00:03:00
 action:
-  service: switch.turn_off
-  entity_id: switch.garage_lights
+  service: light.turn_off
+  entity_id: light.garage_lights_3
 alias: motion garage light off
