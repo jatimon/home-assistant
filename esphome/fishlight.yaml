@@ -1,0 +1,38 @@
+esphome:
+  name: fishlight
+  friendly_name: fishlight
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "csVJ2S9ePNjGBKC8G7iUjHaSa7dvxYpsmAfUMBWaAY0="
+
+ota:
+  password: "5a6313747c20c5ff6d07803af72ae30e"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+light:
+  - platform: monochromatic
+    name: "Blue FishLight"
+    output: blue_output
+  - platform: monochromatic
+    name: "White FishLight"
+    output: white_output
+
+output:
+  - platform: esp8266_pwm
+    id: blue_output
+    pin: D5
+  - platform: esp8266_pwm
+    id: white_output
+    pin: D6
+    

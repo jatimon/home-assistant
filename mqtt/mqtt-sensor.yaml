@@ -4,17 +4,3 @@ sensor:
     state_topic: "homie/PoolDuino-pool/temperature/degrees"
     unique_id: "poolduino_pool_temperature"
     unit_of_measurement: "°F"
-#
-#platform: mqtt
-#name: "Garage Shelly"
-#state_topic: "homie/PoolDuino-pool/temperature/degrees"
-#unique_id: "poolduino_pool_temperature"
-#unit_of_measurement: "°F"
-#
-  - name: Garage Motion Battery 
-    state_topic: "shellies/GarageMotion/status"
-    value_template: "{{ value_json.bat }}"
-    unit_of_measurement: "%"
-    device_class: battery
-    unique_id: garage_motion_battery
-    object_id: garage_motion_power

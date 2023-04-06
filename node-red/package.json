@@ -9,7 +9,9 @@
         "node-red-contrib-eztimer": "~1.2.7",
         "node-red-contrib-light-scheduler": "~0.0.18",
         "node-red-contrib-loop-processing": "~0.5.1",
+        "node-red-contrib-spline-curve": "~1.1.8",
         "node-red-contrib-stoptimer": "~0.0.7",
-        "node-red-contrib-subflow2node": "~0.1.0"
+        "node-red-contrib-subflow2node": "~0.1.0",
+        "node-red-contrib-sun-position": "~2.2.0-beta3"
     }
 }
