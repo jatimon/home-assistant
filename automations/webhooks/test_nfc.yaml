@@ -1,7 +1,0 @@
-alias: test nfc
-trigger: 
-  platform: webhook
-  webhook_id: 23087e67-7492-4ada-b7ae-3cec91c7ca02
-action:
-  service: switch.toggle
-  entity_id: switch.heating_pad
