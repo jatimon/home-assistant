@@ -3,10 +3,6 @@ trigger:
   - entity_id: binary_sensor.lumi_master_bedroom_contact_1
     platform: state
     to: "on"
-condition:
-  condition: state
-  entity_id: binary_sensor.anyone_home
-  state: "off"
 action:
   service: notify.mobile_app_christine_timons_iphone
   data:

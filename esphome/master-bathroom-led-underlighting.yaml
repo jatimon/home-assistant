@@ -14,8 +14,12 @@ ota:
   password: "fd81202483b0870d0c3fce13750fde9f"
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  networks:
+  - ssid: !secret upstairs_ssid
+    password: !secret wifi_password
+    priority: 10
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_password
 
 # Example configuration entry
 light:

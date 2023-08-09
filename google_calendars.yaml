@@ -32,3 +32,9 @@
   - device_id: recharge_calendar
     ignore_availability: true
     name: Recharge Calendar
+
+- cal_id: family16131647958444172310@group.calendar.google.com
+  entities:
+  - device_id: family
+    ignore_availability: true
+    name: Family

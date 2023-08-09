@@ -1,9 +1,9 @@
 sensor:
-  unique_id: washing_machine_sensor
-  name: Washing Machine is Running
-  state: >-
-    {% if states('sensor.washing_machine_power')|float > 1 %}
-      true
-    {% else %}
-      false
-    {% endif %}
+  - name: Washing Machine is Running
+    unique_id: washing_machine_sensor
+    state: >-
+      {% if states('sensor.washing_machine_power')|float > 1 %}
+        true
+      {% else %}
+        false
+      {% endif %}
