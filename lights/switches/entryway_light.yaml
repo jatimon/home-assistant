@@ -1,3 +1,0 @@
-platform: switch
-name: entryway_light
-entity_id: switch.entryway_light

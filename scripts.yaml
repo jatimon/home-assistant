@@ -20,3 +20,67 @@ activate_alexa_actionable_notification:
         entity_id: "{{ alexa_device }}"
         media_content_type: skill
         media_content_id: amzn1.ask.skill.303eaa12-0a55-4e96-bfcd-fc290279709c
+
+
+# "Alexa, turn on the lights"
+alexa_turn_on_the_lights:
+  description: link between alexa routine and room aware light control
+  sequence:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: >-
+          {# Use the name of each Echo to determine which room the command likely came from. #}
+          {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+          {%- if room == "asshat" -%}
+            light.main_floor_lights
+          {%- elif room == "boudoir" -%}
+            light.master_bedroom_light
+          {%- elif room == "garage" -%}
+            light.garage_lights
+          {%- endif -%}
+
+# "Alexa, turn off the lights"
+alexa_turn_off_the_lights:
+  description: link between alexa routine and room aware light control
+  sequence:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: >-
+          {# Use the name of each Echo to determine which room the command likely came from. #}
+          {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+          {%- if room == "asshat" -%}
+            light.main_floor_lights
+          {%- elif room == "boudoir" -%}
+            light.master_bedroom_light
+          {%- elif room == "garage" -%}
+            light.garage_lights
+          {%- endif -%}
+
+# "Alexa, turn on the fan"
+alexa_turn_on_the_fan:
+  description: link between alexa routine and room aware fan control
+  sequence:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: >-
+          {# Use the name of each Echo to determine which room the command likely came from. #}
+          {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+          {%- if room == "boudoir" -%}
+            fan.master_bedroom_fan
+          {%- endif -%}
+
+# "Alexa, turn off the fan"
+alexa_turn_off_the_fan:
+  description: link between alexa routine and room aware fan control
+  sequence:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: >-
+          {# Use the name of each Echo to determine which room the command likely came from. #}
+          {%- set room = states("sensor.last_alexa")|replace('media_player.','') -%}
+          {%- if room == "boudoir" -%}
+            fan.master_bedroom_fan
+          {%- endif -%}
+
+
+

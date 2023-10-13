@@ -21,6 +21,9 @@ wifi:
 
 
 light:
+  - platform: monochromatic
+    name: "Headboard Lights"
+    output: headboard_light
   - platform: fastled_clockless
     chipset: WS2812b
     pin: GPIO16
@@ -78,3 +81,56 @@ light:
           name: Scan Effect With Custom Values
           move_interval: 10ms
           scan_width: 5
+
+output:
+  - platform: ledc
+    id: headboard_light
+    pin: GPIO13
+
+sensor:
+  - platform: hx711
+    name: "John's Side"
+    dout_pin: GPIO19
+    clk_pin: GPIO18
+    gain: 128
+    update_interval: 1s # ishak 0.2
+    filters:
+      - calibrate_linear:
+          - -1524035 -> 0
+          - -2356253 -> 190
+#      - sliding_window_moving_average:
+#          window_size: 50
+#          send_every: 10
+#          send_first_at: 10
+    unit_of_measurement: lb
+    accuracy_decimals: 2
+  - platform: hx711
+    name: "Christine's Side"
+    dout_pin: GPIO32
+    clk_pin: GPIO33
+    gain: 128
+    update_interval: 1s # ishak 0.2
+    filters:
+       - calibrate_linear:
+          - -1929055 -> 0
+          - -2385951 -> 180
+#       - sliding_window_moving_average:
+#          window_size: 50
+#          send_every: 10
+#          send_first_at: 10
+    unit_of_measurement: lb
+    accuracy_decimals: 2
+
+esp32_touch:
+  setup_mode: false
+
+binary_sensor:
+  - platform: esp32_touch
+    name: "Touch Pad 2"
+    pin: GPIO27
+    threshold: 800
+  - platform: esp32_touch
+    name: "Touch Pad 1"
+    pin: GPIO14
+    threshold: 800
+

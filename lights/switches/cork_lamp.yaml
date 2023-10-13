@@ -1,3 +1,0 @@
-platform: switch
-name: cork_lamp
-entity_id: switch.cork_lamp_socket_1

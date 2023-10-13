@@ -1,0 +1,20 @@
+id: 'johninbed'
+alias: John's underbed light off
+description: 'John gets in to bed '
+trigger:
+- platform: state
+  entity_id:
+  - binary_sensor.john_in_bed
+  from: 'off'
+  to: 'on'
+condition:
+- condition: time
+  after: '17:00:00'
+  before: 08:00:00
+action:
+- service: light.turn_off
+  data:
+    brightness_pct: 100
+  target:
+    entity_id: light.right_underbed
+mode: single

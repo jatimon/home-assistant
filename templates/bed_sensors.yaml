@@ -1,0 +1,9 @@
+binary_sensor:
+  - name: John In Bed
+    unique_id: john_in_bed
+    state: >
+      {{ states('sensor.john_s_side')|float > 100 }}
+  - name: Christine In Bed
+    unique_id: christine_in_bed
+    state: >
+      {{ states('sensor.christine_s_side')|float > 100 }}
