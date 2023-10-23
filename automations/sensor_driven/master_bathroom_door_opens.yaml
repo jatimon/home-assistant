@@ -21,6 +21,7 @@ condition:
 action:
   - service: light.turn_on
     data:
-      entity_id: light.master_bathroom_led_lights
-      brightness: 20
+      brightness_pct: 15
+      rgb_color: [25, 33, 255]
+    entity_id: light.under_cabinet_light
 mode: single

@@ -96,11 +96,11 @@ sensor:
     update_interval: 1s # ishak 0.2
     filters:
       - calibrate_linear:
-          - -1524035 -> 0
-          - -2356253 -> 190
-#      - sliding_window_moving_average:
-#          window_size: 50
-#          send_every: 10
+          - -1471991 -> 0
+          - -2245691 -> 190
+      - sliding_window_moving_average:
+          window_size: 3
+          send_every: 1
 #          send_first_at: 10
     unit_of_measurement: lb
     accuracy_decimals: 2
@@ -112,11 +112,11 @@ sensor:
     update_interval: 1s # ishak 0.2
     filters:
        - calibrate_linear:
-          - -1929055 -> 0
+          - -1891389 -> 0
           - -2385951 -> 180
-#       - sliding_window_moving_average:
-#          window_size: 50
-#          send_every: 10
+       - sliding_window_moving_average:
+          window_size: 3
+          send_every: 1
 #          send_first_at: 10
     unit_of_measurement: lb
     accuracy_decimals: 2

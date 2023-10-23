@@ -2,8 +2,30 @@ binary_sensor:
   - name: John In Bed
     unique_id: john_in_bed
     state: >
-      {{ states('sensor.john_s_side')|float > 100 }}
+      {{ states('sensor.john_s_side')|float > 100 and states('sensor.bed_occupancy_count') == 2 }}
   - name: Christine In Bed
     unique_id: christine_in_bed
     state: >
-      {{ states('sensor.christine_s_side')|float > 100 }}
+      {{ states('sensor.christine_s_side')|float > 100 and states('sensor.bed_occupancy_count') == 2  }}
+
+
+sensor:
+  - name: Bed Weight
+    unique_id:  total_bed_weight
+    state_class: measurement
+    unit_of_measurement: lb 
+    state: >
+      {% set total_weight = (states('sensor.john_s_side') | float) + (states('sensor.christine_s_side') |float) %}
+      {{ total_weight | float }}
+    
+  - name: Bed Occupancy Count
+    unique_id:  how_many_people_in_bed
+    state_class: measurement
+    state: > 
+      {% if states('sensor.bed_weight')|float > 200 %}
+      2
+      {% elif states('sensor.bed_weight')|float > 100 %}
+      1
+      {% else %}
+      0
+      {% endif %}

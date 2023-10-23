@@ -3,17 +3,17 @@ description: ''
 trigger:
   - platform: state
     entity_id:
-      - light.master_bathroom_led_lights
+      - light.under_cabinet_light
     from: 'off'
     to: 'on'
     for:
       hours: 0
-      minutes: 5
+      minutes: 10
       seconds: 0
 condition: []
 action:
   - service: light.turn_off
     data: {}
     target:
-      entity_id: light.master_bathroom_led_lights
+      entity_id: light.under_cabinet_light
 mode: single

@@ -1,0 +1,55 @@
+- id: '1697759634706'
+  alias: Turn off underbed lights
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:31:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+      - light.left_underbed
+      - light.right_underbed
+  mode: single
+- id: '1697826124111'
+  alias: Turn gordon on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.gordon
+    to: 'on'
+  condition: []
+  action:
+  - service: remote.send_command
+    data:
+      device: gordon
+      command: power
+    target:
+      entity_id: remote.broadlink_blaster
+  - service: remote.send_command
+    data:
+      device: gordon
+      command: flip_star
+    target:
+      entity_id: remote.broadlink_blaster
+  mode: single
+- id: turngordonoff
+  alias: Turn gordon off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.gordon
+    to: 'off'
+  condition: []
+  action:
+  - service: remote.send_command
+    data:
+      device: gordon
+      command: power
+    target:
+      entity_id: remote.broadlink_blaster
+  mode: single

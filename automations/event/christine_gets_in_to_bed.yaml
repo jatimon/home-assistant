@@ -13,8 +13,8 @@ condition:
   before: 08:00:00
 action:
 - service: light.turn_off
-  data:
-    brightness_pct: 100
   target:
-    entity_id: light.left_underbed
+    entity_id: 
+    - light.left_underbed
+    - light.under_cabinet_light
 mode: single

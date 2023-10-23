@@ -13,7 +13,8 @@ tts:
   - platform: google_translate
 
 # My own handmade automations
-automation: !include_dir_list automations/
+automation manual: !include_dir_list automations/
+automation ui: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 input_boolean: !include_dir_named input_booleans

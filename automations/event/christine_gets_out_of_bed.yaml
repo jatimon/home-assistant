@@ -1,4 +1,4 @@
-id: 'christineinbed'
+id: 'hristineoutofbed'
 alias: CHristine's underbed light on
 description: 'Christine gets out of bed '
 trigger:
@@ -9,12 +9,18 @@ trigger:
   to: 'off'
 condition:
 - condition: time
-  after: '17:00:00'
-  before: 08:00:00
+  after: '20:00:00'
+  before: 06:30:00
 action:
 - service: light.turn_on
   data:
-    brightness_pct: 100
+    brightness_pct: 10
+    rgb_color: 
+    - 255
+    - 191
+    - 0
   target:
-    entity_id: light.left_underbed
+    entity_id:
+    - light.left_underbed
+    - light.under_cabinet_light
 mode: single

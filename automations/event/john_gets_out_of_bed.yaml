@@ -9,12 +9,18 @@ trigger:
   to: 'off'
 condition:
 - condition: time
-  after: '17:00:00'
-  before: 08:00:00
+  after: '20:00:00'
+  before: 06:30:00
 action:
 - service: light.turn_on
   data:
-    brightness_pct: 100
+    brightness_pct: 10
+    rgb_color: 
+    - 255
+    - 191
+    - 0
   target:
-    entity_id: light.right_underbed
+    entity_id: 
+    - light.right_underbed
+    - light.under_cabinet_light
 mode: single
