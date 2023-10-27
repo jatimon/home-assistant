@@ -21,9 +21,9 @@ wifi:
 
 
 light:
-  - platform: monochromatic
-    name: "Headboard Lights"
-    output: headboard_light
+  #- platform: monochromatic
+  #  name: "Headboard Lights"
+  #  output: headboard_light
   - platform: fastled_clockless
     chipset: WS2812b
     pin: GPIO16
@@ -82,10 +82,10 @@ light:
           move_interval: 10ms
           scan_width: 5
 
-output:
-  - platform: ledc
-    id: headboard_light
-    pin: GPIO13
+#output:
+#  - platform: ledc
+#    id: headboard_light
+#    pin: GPIO13
 
 sensor:
   - platform: hx711
@@ -93,23 +93,26 @@ sensor:
     dout_pin: GPIO19
     clk_pin: GPIO18
     gain: 128
-    update_interval: 1s # ishak 0.2
+    update_interval: 0.5s
     filters:
       - calibrate_linear:
           - -1471991 -> 0
           - -2245691 -> 190
       - sliding_window_moving_average:
-          window_size: 3
+          window_size: 10
           send_every: 1
-#          send_first_at: 10
+      - or:
+        - throttle: 180s
+        - delta: 200
     unit_of_measurement: lb
     accuracy_decimals: 2
+
   - platform: hx711
     name: "Christine's Side"
     dout_pin: GPIO32
     clk_pin: GPIO33
     gain: 128
-    update_interval: 1s # ishak 0.2
+    update_interval: 0.5s 
     filters:
        - calibrate_linear:
           - -1891389 -> 0
@@ -117,20 +120,22 @@ sensor:
        - sliding_window_moving_average:
           window_size: 3
           send_every: 1
-#          send_first_at: 10
+       - or:
+         - throttle: 180s
+         - delta: 200
     unit_of_measurement: lb
     accuracy_decimals: 2
 
-esp32_touch:
-  setup_mode: false
-
-binary_sensor:
-  - platform: esp32_touch
-    name: "Touch Pad 2"
-    pin: GPIO27
-    threshold: 800
-  - platform: esp32_touch
-    name: "Touch Pad 1"
-    pin: GPIO14
-    threshold: 800
+#esp32_touch:
+#  setup_mode: false
+#
+#binary_sensor:
+#  - platform: esp32_touch
+#    name: "Touch Pad 2"
+#    pin: GPIO27
+#    threshold: 800
+#  - platform: esp32_touch
+#    name: "Touch Pad 1"
+#    pin: GPIO14
+#    threshold: 800
 

@@ -7,6 +7,8 @@ trigger:
   - binary_sensor.john_in_bed
   from: 'on'
   to: 'off'
+  for:
+    seconds: 1
 condition:
 - condition: time
   after: '20:00:00'

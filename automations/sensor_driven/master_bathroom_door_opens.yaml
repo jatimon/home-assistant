@@ -22,6 +22,6 @@ action:
   - service: light.turn_on
     data:
       brightness_pct: 15
-      rgb_color: [25, 33, 255]
+      rgb_color: [255, 191, 0]
     entity_id: light.under_cabinet_light
 mode: single

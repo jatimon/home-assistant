@@ -2,11 +2,11 @@ binary_sensor:
   - name: John In Bed
     unique_id: john_in_bed
     state: >
-      {{ states('sensor.john_s_side')|float > 100 and states('sensor.bed_occupancy_count') == 2 }}
+      {{ (states('sensor.john_s_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
   - name: Christine In Bed
     unique_id: christine_in_bed
     state: >
-      {{ states('sensor.christine_s_side')|float > 100 and states('sensor.bed_occupancy_count') == 2  }}
+      {{ (states('sensor.christine_s_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
 
 
 sensor:
@@ -25,6 +25,19 @@ sensor:
       {% if states('sensor.bed_weight')|float > 200 %}
       2
       {% elif states('sensor.bed_weight')|float > 100 %}
+      1
+      {% else %}
+      0
+      {% endif %}
+
+
+  - name: Home Occupancy Count
+    unique_id: home_occupancy_count_id
+    state_class: measurement
+    state: > 
+      {% if states('person.john_timon') == "home" and states('person.christine') == "home" %}
+      2
+      {% elif states('person.john_timon') == "home" or states('person.christine') == "home" %}
       1
       {% else %}
       0
