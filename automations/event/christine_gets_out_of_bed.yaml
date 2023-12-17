@@ -14,7 +14,7 @@ condition:
 action:
 - service: light.turn_on
   data:
-    brightness_pct: 10
+    brightness_pct: 25
     rgb_color: 
     - 255
     - 191

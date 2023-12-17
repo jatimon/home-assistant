@@ -12,11 +12,11 @@ trigger:
 condition:
 - condition: time
   after: '20:00:00'
-  before: 06:30:00
+  before: '06:30:00'
 action:
 - service: light.turn_on
   data:
-    brightness_pct: 10
+    brightness_pct: 25
     rgb_color: 
     - 255
     - 191

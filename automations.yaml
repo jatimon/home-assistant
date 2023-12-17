@@ -29,10 +29,17 @@
       command: power
     target:
       entity_id: remote.broadlink_blaster
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 30
   - service: remote.send_command
     data:
       device: gordon
       command: flip_star
+      num_repeats: 2
+      delay_secs: 1
     target:
       entity_id: remote.broadlink_blaster
   mode: single
@@ -52,4 +59,51 @@
       command: power
     target:
       entity_id: remote.broadlink_blaster
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 30
+  - service: remote.send_command
+    data:
+      device: gordon
+      command: flip_star
+    target:
+      entity_id: remote.broadlink_blaster
   mode: single
+- id: '1698712179394'
+  alias: Turn off alexa when the tv is on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.lg_webos_tv_dc47
+    to: playing
+  condition:
+  - condition: state
+    entity_id: media_player.asshat
+    state: playing
+  action:
+  - service: media_player.media_stop
+    data: {}
+    target:
+      entity_id: media_player.asshat
+  mode: single
+- id: '1701572414568'
+  alias: disable garage light auto off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.garage_light_automation
+  condition: []
+  action:
+  - service: automation.toggle
+    data: {}
+    target:
+      entity_id:
+      - automation.motion_garage_fridge_light_off_2
+      - automation.motion_garage_light_off_2
+      - automation.motion_laundry_light_off_2
+  mode: single
+

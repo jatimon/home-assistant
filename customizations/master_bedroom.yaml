@@ -1,3 +1,12 @@
 binary_sensor.lumi_master_bedroom_contact_2:
   security_zone: exterior
   location: top left
+
+light.masterbedroom_bed_controller_right_underbed:
+  exempt: true
+
+light.masterbedroom_bed_controller_left_underbed:
+  exempt: true
+
+light.left_underbed:
+  exempt: true

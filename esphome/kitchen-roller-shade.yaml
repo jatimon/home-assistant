@@ -129,7 +129,7 @@ switch:
             id(down_position) = id(my_stepper).current_position;
             id(last_known_position) = id(down_position);
             id(bed_down_pos).publish_state(id(down_position));
-            id(rollerblind_bed_down).publish_state(true);
+            id(rollerblind_bed_down).publish_state(false);
         - logger.log:
             format: "Saving down position %.1i"
             args: [ 'id(down_position)']
@@ -205,25 +205,8 @@ switch:
   - platform: template
     name: $devicestring Closed
     id: rollerblind_bed_down
-    turn_on_action:
-      # Reset DOWN and UP manual
-      - switch.template.publish:
-          id: move_up
-          state: OFF
-      - switch.template.publish:
-          id: move_down
-          state: OFF
-      # Enable switch
-      - switch.template.publish:
-          id: rollerblind_bed_down
-          state: ON
-      # Set last_known_position to the final position
-      #   It might not necessarily be the final position and
-      #   Can be a challenge if power breaks upon moving
-      - lambda: |-
-          id(last_known_position) = id(down_position);
-          id(my_stepper).set_target(id(down_position));
     turn_off_action:
+      # Enable switch
       - switch.template.publish:
           id: rollerblind_bed_down
           state: OFF
@@ -233,6 +216,24 @@ switch:
       - lambda: |-
           id(last_known_position) = 0;
           id(my_stepper).set_target(0);
+
+    turn_on_action:
+      # Reset DOWN and UP manual
+      - switch.template.publish:
+          id: move_up
+          state: OFF
+      - switch.template.publish:
+          id: move_down
+          state: OFF
+      - switch.template.publish:
+          id: rollerblind_bed_down
+          state: ON
+      # Set last_known_position to the final position
+      #   It might not necessarily be the final position and
+      #   Can be a challenge if power breaks upon moving
+      - lambda: |-
+          id(last_known_position) = id(down_position);
+          id(my_stepper).set_target(id(down_position));
 
 # On a regular basis store the position of the roller blind
 #   Don't do it too frequently as it might impact the move of the blind

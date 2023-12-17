@@ -1,13 +1,13 @@
-# Time of day sensor
-- platform: workday
-  country: US
-  workdays: [mon, tue, wed, thu, fri]
-  excludes: [sat, sun, holiday]
-  add_holidays:
-    - "2020-10-09"
-    - "2020-10-15"
-    - "2020-10-16"
-
+## Time of day sensor
+#- platform: workday
+#  country: US
+#  workdays: [mon, tue, wed, thu, fri]
+#  excludes: [sat, sun, holiday]
+#  add_holidays:
+#    - "2020-10-09"
+#    - "2020-10-15"
+#    - "2020-10-16"
+#
 - platform: tod
   name: Early Morning
   after: sunrise
@@ -56,18 +56,3 @@
         {% set thresh = 5 %}
         {{ (humid - avg) > thresh }}
       unique_id: "downstairs_bathroom_humidity_status"
-
-
-# Ping gateway
-- platform: ping
-  host: 192.168.0.1
-  name: Gateway Ping
-  count: 2
-  scan_interval: 30
-
-# Ping gateway
-- platform: ping
-  host: xfinity.com
-  name: Xfinity
-  count: 2
-  scan_interval: 30
