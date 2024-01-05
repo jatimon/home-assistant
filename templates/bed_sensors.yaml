@@ -2,11 +2,11 @@ binary_sensor:
   - name: John In Bed
     unique_id: john_in_bed
     state: >
-      {{ (states('sensor.john_s_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
+      {{ (states('sensor.johns_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
   - name: Christine In Bed
     unique_id: christine_in_bed
     state: >
-      {{ (states('sensor.christine_s_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
+      {{ (states('sensor.christines_side')|float) > 100 or (states('sensor.bed_weight')|float) > (states('sensor.home_occupancy_count') | float * 100 ) }}
 
 
 sensor:
@@ -15,7 +15,7 @@ sensor:
     state_class: measurement
     unit_of_measurement: lb 
     state: >
-      {% set total_weight = (states('sensor.john_s_side') | float) + (states('sensor.christine_s_side') |float) %}
+      {% set total_weight = (states('sensor.johns_side') | float) + (states('sensor.christines_side') |float) %}
       {{ total_weight | float }}
     
   - name: Bed Occupancy Count

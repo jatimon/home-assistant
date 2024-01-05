@@ -2,6 +2,7 @@ alias: Master bedroom door open
 trigger:
   - entity_id: binary_sensor.lumi_master_bedroom_contact_1
     platform: state
+    from: "off"
     to: "on"
 action:
   service: notify.mobile_app_christine_timons_iphone

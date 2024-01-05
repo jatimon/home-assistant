@@ -6,11 +6,37 @@ esp32:
   framework:
     type: arduino
 
+globals:
+  - id: christine_initial_zero
+    type: float
+    restore_value: 'yes'
+    initial_value: '-2021482'
+
+  - id: john_initial_zero
+    type: float
+    restore_value: 'yes'
+    initial_value: '-1471991'
+
+  - id: auto_tare_enabled
+    type: bool
+    restore_value: 'yes'
+    initial_value: 'true'
+
+  - id: christine_auto_tare_difference
+    type: float
+    restore_value: 'yes'
+    initial_value: '0'
+
+  - id: john_auto_tare_difference
+    type: float
+    restore_value: 'yes'
+    initial_value: '0'
+
 # Enable logging
 logger:
-  level: DEBUG
-  logs:
-    hx711: INFO
+  level: INFO
+#  logs:
+#    hx711: INFO
 
 # enable mqtt
 mqtt:
@@ -26,6 +52,16 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
+button:
+  - platform: template
+    id: bed_sensor_tare_action_switch
+    name: Bed Manual Tare
+    icon: mdi:scale-balance
+    on_press: 
+      - lambda: |-
+          id(christine_auto_tare_difference) = id(christine_initial_zero) - id(christines_side_raw).state;
+          id(john_auto_tare_difference) = id(john_initial_zero) - id(johns_side_raw).state;
+         
 
 light:
   #- platform: monochromatic
@@ -96,42 +132,108 @@ light:
 
 sensor:
   - platform: hx711
-    name: "John's Side"
+    id: johns_side_raw
+    name: johns side raw
+    internal: False
     dout_pin: GPIO19
     clk_pin: GPIO18
     gain: 128
-    update_interval: 0.5s
+    update_interval: 1s
     filters:
-      - calibrate_linear:
-          - -1471991 -> 0
-          - -2245691 -> 190
-      - sliding_window_moving_average:
+      - quantile:
           window_size: 10
           send_every: 1
-      - or:
-        - throttle: 180s
-        - delta: 5%
-    unit_of_measurement: lb
-    accuracy_decimals: 2
+          send_first_at: 1
+          quantile: .9
+    on_value:
+      then:
+        - sensor.template.publish:
+            id: johns_side
+            state: !lambda 'return id(johns_side_raw).state;'
+        - if:
+            condition:
+              and:
+                - lambda: 'return id(auto_tare_enabled);'
+                # no one is home
+                - lambda: 'return id(johns_side_raw).state < 10.0;'
+            then:
+              - if:
+                  condition:
+                    - lambda: 'return id(johns_side_raw).state < (id(john_initial_zero) - id(john_auto_tare_difference));'
+                  then:
+                    - lambda: |-
+                        id(john_auto_tare_difference) += 10;
+                  else:
+                    - lambda: |-
+                        id(john_auto_tare_difference) -= 10;
 
   - platform: hx711
-    name: "Christine's Side"
+    id: christines_side_raw
+    name: christines side raw
+    internal: False
     dout_pin: GPIO32
     clk_pin: GPIO33
     gain: 128
-    update_interval: 0.5s 
+    update_interval: 1s
     filters:
-       - calibrate_linear:
-          - -1891389 -> 0
-          - -2385951 -> 180
-       - sliding_window_moving_average:
-          window_size: 3
+      - quantile:
+          window_size: 10
           send_every: 1
-       - or:
-         - throttle: 180s
-         - delta: 5%
+          send_first_at: 1
+          quantile: .9
+    on_value:
+      then:
+        - sensor.template.publish:
+            id: christines_side
+            state: !lambda 'return id(christines_side_raw).state;'
+        - if:
+            condition:
+              and:
+                - lambda: 'return id(auto_tare_enabled);'
+                # no one is home
+                - lambda: 'return id(christines_side_raw).state < 10.0;'
+            then:
+              - if:
+                  condition:
+                    - lambda: 'return id(christines_side_raw).state < (id(christine_initial_zero) - id(christine_auto_tare_difference));'
+                  then:
+                    - lambda: |-
+                        id(christine_auto_tare_difference) += 10;
+                  else:
+                    - lambda: |-
+                        id(christine_auto_tare_difference) -= 10;
+
+  - platform: template
+    id: christines_side
+    name: Christines Side
+    internal: False
+    filters:
+      - lambda: 'return x + id(christine_auto_tare_difference);'
+      - calibrate_linear:
+          - -2021482 -> 0
+          - -2599781 -> 180
+      - lambda: |-
+          if (x <= 0.1) { return 0.0;}
+          else {return x;}
     unit_of_measurement: lb
     accuracy_decimals: 2
+    update_interval: never
+
+  - platform: template
+    id: johns_side
+    name: Johns Side
+    internal: False
+    filters:
+      - lambda: 'return x + id(john_auto_tare_difference);'
+      - calibrate_linear:
+          - -1471991 -> 0
+          - -2250806 -> 190
+      - lambda: |-
+          if (x <= 0.1) { return 0.0;}
+          else {return x;}
+    unit_of_measurement: lb
+    accuracy_decimals: 2
+    update_interval: never
 
 #esp32_touch:
 #  setup_mode: false
@@ -145,4 +247,3 @@ sensor:
 #    name: "Touch Pad 1"
 #    pin: GPIO14
 #    threshold: 800
-
