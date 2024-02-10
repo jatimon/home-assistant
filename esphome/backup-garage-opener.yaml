@@ -25,4 +25,8 @@ wifi:
 switch:
   - platform: gpio
     name: "Garage Door Backup"
+    id: relay
     pin: 5
+    on_turn_on:
+    - delay: 500ms
+    - switch.turn_off: relay

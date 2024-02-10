@@ -23,5 +23,6 @@ action:
     data:
       brightness_pct: 15
       rgb_color: [255, 191, 0]
-    entity_id: light.under_cabinet_light
+    target:
+      entity_id: light.under_cabinet_light
 mode: single

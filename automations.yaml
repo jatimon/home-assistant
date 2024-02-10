@@ -78,7 +78,7 @@
   - platform: state
     entity_id:
     - media_player.lg_webos_tv_dc47
-    to: playing
+    to: 'on'
   condition:
   - condition: state
     entity_id: media_player.asshat

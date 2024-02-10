@@ -91,7 +91,7 @@ momentary:
 
 recorder:
   db_url: !secret db_url
-  purge_keep_days: 3
+  purge_keep_days: 14
   exclude:
     entities:
       - sensor.last_boot
@@ -109,3 +109,41 @@ input_text:
 
 # Enable font awesome, downloaded via hacs
 #fontawesome:
+
+cover:
+  - platform: template
+    covers:
+      garage_door:
+        device_class: garage
+        friendly_name: "Garage Door"
+        unique_id: unique_id_garage_door
+        position_template: |-
+          {% if is_state('binary_sensor.garage_door_contact', 'on') -%}
+            0
+          {%- else -%}
+            100
+          {%- endif %}
+        open_cover:
+          - condition: state
+            entity_id: binary_sensor.garage_door_contact
+            state: "on"
+          - service: switch.turn_on
+            target:
+              entity_id: switch.garage_door_backup
+        close_cover:
+          - condition: state
+            entity_id: binary_sensor.garage_door_contact
+            state: "off"
+          - service: switch.turn_on # momentary switch
+            target:
+              entity_id: switch.garage_door_backup
+        stop_cover:
+          service: switch.turn_on
+          target:
+            entity_id: switch.garage_door_backup
+        icon_template: >-
+          {% if states('binary_sensor.garage_door_contact')|float > 0 %}
+            mdi:garage-open
+          {% else %}
+            mdi:garage
+          {% endif %}

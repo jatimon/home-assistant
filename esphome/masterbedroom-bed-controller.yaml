@@ -10,12 +10,12 @@ globals:
   - id: christine_initial_zero
     type: float
     restore_value: 'yes'
-    initial_value: '-2021482'
+    initial_value: '-2081482'
 
   - id: john_initial_zero
     type: float
     restore_value: 'yes'
-    initial_value: '-1471991'
+    initial_value: '-1451991'
 
   - id: auto_tare_enabled
     type: bool
@@ -211,7 +211,7 @@ sensor:
       - lambda: 'return x + id(christine_auto_tare_difference);'
       - calibrate_linear:
           - -2021482 -> 0
-          - -2599781 -> 180
+          - -2509781 -> 180
       - lambda: |-
           if (x <= 0.1) { return 0.0;}
           else {return x;}
@@ -227,7 +227,7 @@ sensor:
       - lambda: 'return x + id(john_auto_tare_difference);'
       - calibrate_linear:
           - -1471991 -> 0
-          - -2250806 -> 190
+          - -2150806 -> 190
       - lambda: |-
           if (x <= 0.1) { return 0.0;}
           else {return x;}
