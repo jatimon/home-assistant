@@ -7,3 +7,4 @@ action:
   service: switch.turn_off
   entity_id: switch.garage_fridge_light
 alias: motion garage fridge light off
+id: garagefridgelightoff

@@ -46,6 +46,7 @@ mqtt:
 api:
 
 ota:
+  platform: esphome
   password: "111f1155588fa84d2c83af7add9c3f69"
 
 wifi:
@@ -218,6 +219,7 @@ sensor:
     unit_of_measurement: lb
     accuracy_decimals: 2
     update_interval: never
+    state_class: "measurement"
 
   - platform: template
     id: johns_side
@@ -234,6 +236,7 @@ sensor:
     unit_of_measurement: lb
     accuracy_decimals: 2
     update_interval: never
+    state_class: "measurement"
 
 #esp32_touch:
 #  setup_mode: false

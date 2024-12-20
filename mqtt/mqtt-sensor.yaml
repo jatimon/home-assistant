@@ -4,3 +4,8 @@ sensor:
     state_topic: "homie/PoolDuino-pool/temperature/degrees"
     unique_id: "poolduino_pool_temperature"
     unit_of_measurement: "°F"
+
+  - name: Landscape Light Color
+    state_topic: "shellies/BarLight/color/0/status"
+    unique_id: landscape_ligth_color
+    value_template: "{{ value_json.red }},{{ value_json.green }},{{ value_json.blue }}"

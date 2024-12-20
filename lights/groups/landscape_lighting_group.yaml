@@ -6,3 +6,4 @@ entities:
   - light.landscape_light_2
   - light.landscape_light_3
   - light.bar_light
+  - light.shower_light

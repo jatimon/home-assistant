@@ -30,6 +30,7 @@ api:
         - fan.cycle_speed: the_fan
 
 ota:
+  platform: esphome
   password: "0fabb2f80f55619145d93fe091b6864d"
 
 wifi:

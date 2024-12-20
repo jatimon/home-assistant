@@ -10,7 +10,8 @@ esphome:
 api:
   encryption:
     key: yv2UyZ4LM8t4Q49Fzid1ysCIl6TD/caBhdnEtTKmQo8=
-
+ota:
+  platform: esphome
 
 wifi:
   networks:

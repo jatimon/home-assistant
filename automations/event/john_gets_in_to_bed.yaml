@@ -16,5 +16,4 @@ action:
   target:
     entity_id: 
     - light.right_underbed
-    - light.under_cabinet_light
 mode: single

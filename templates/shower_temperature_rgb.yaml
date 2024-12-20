@@ -1,0 +1,23 @@
+sensor:
+
+  - name: shower temperature rgb
+    unique_id: outdoor_shower_temperature_rgb
+    state: >-
+      {% set temp = states('sensor.shower_temperature') | float %}
+      {% if temp < 17 %}
+        0,0,255
+      {% elif temp >= 40 %}
+        255,0,0
+      {% else %}
+        {% set min_temp = 17 %}
+        {% set max_temp = 40 %}
+        {% set min_color = (0, 0, 255) %}
+        {% set max_color = (255, 0, 0) %}
+
+        {% set ratio = (temp - min_temp) / (max_temp - min_temp) %}
+        {% set r = ((max_color[0] - min_color[0]) * ratio + min_color[0]) | round(0) %}
+        {% set g = ((max_color[1] - min_color[1]) * ratio + min_color[1]) | round(0) %}
+        {% set b = ((max_color[2] - min_color[2]) * ratio + min_color[2]) | round(0) %}
+
+        {{ r }},{{ g }},{{ b }}
+      {% endif %}

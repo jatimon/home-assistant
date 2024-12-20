@@ -7,3 +7,4 @@ action:
 - service: switch.turn_off
   entity_id: switch.laundry_light_switch
 alias: motion laundry light off
+id: laundrylightoff
