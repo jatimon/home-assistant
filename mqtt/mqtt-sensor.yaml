@@ -7,5 +7,6 @@ sensor:
 
   - name: Landscape Light Color
     state_topic: "shellies/BarLight/color/0/status"
+    json_attributes_topic: "shellies/BarLight/color/0/status"
     unique_id: landscape_ligth_color
-    value_template: "{{ value_json.red }},{{ value_json.green }},{{ value_json.blue }}"
+    value_template: "{{ value_json.red }},{{value_json.green }},{{ value_json.blue }}"

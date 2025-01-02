@@ -260,3 +260,40 @@
     target:
       entity_id: light.shower_light
   mode: single
+- id: '1735326125362'
+  alias: Kitchen Sink Light on
+  description: ''
+  triggers:
+  - type: moist
+    device_id: d9c50c5dd1129030d3a16683530a830f
+    entity_id: 2b4d0ad1469f4ec8f675581f9b91d430
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 4a9011c4cf416d90b0df1fdd87253f76
+    entity_id: 41c0f52e254f60f5cb9e182e57baed63
+    domain: switch
+  mode: single
+- id: '1735431121229'
+  alias: Turn off sink light with kitchen lights
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: eb827fb8356290b5036d7c62ab7c84e0
+    entity_id: 00fbdb3d46971b4500f3f3e9cd828265
+    domain: light
+    trigger: device
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 4a9011c4cf416d90b0df1fdd87253f76
+    entity_id: 41c0f52e254f60f5cb9e182e57baed63
+    domain: switch
+  actions:
+  - type: turn_off
+    device_id: 4a9011c4cf416d90b0df1fdd87253f76
+    entity_id: 41c0f52e254f60f5cb9e182e57baed63
+    domain: switch
+  mode: single
