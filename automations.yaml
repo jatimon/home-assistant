@@ -317,3 +317,158 @@
       - light.left_underbed
     data: {}
   mode: single
+- id: '1736287696699'
+  alias: CHristine's underbed light on
+  description: 'Christine gets out of bed '
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.christine_in_bed
+    from: 'on'
+    to: 'off'
+  conditions:
+  - condition: time
+    after: '20:00:00'
+    before: 06:30:00
+  actions:
+  - action: light.turn_on
+    data:
+      brightness_pct: 25
+      rgb_color:
+      - 255
+      - 191
+      - 0
+    target:
+      entity_id:
+      - light.left_underbed
+      - light.under_cabinet_light
+  mode: single
+- id: '1736287731216'
+  alias: Daily Backup
+  description: ''
+  triggers:
+  - trigger: time
+    at: 00:00:00
+  conditions: []
+  actions:
+  - action: hassio.backup_full
+    data: {}
+  mode: single
+- id: '1736287767116'
+  alias: Notify Dryer Cycle Completed
+  description: ''
+  triggers:
+  - entity_id: sensor.dryer_is_running
+    trigger: state
+    from: 'true'
+    to: 'false'
+    for:
+      minutes: 1
+  conditions:
+  - condition: state
+    entity_id:
+    - person.christine
+    state: home
+  actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: The dryer has finished its cycle
+      title: Dryer Done
+  mode: single
+- id: '1736287803306'
+  alias: John's underbed light off
+  description: 'John gets in to bed '
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.john_in_bed
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: time
+    after: '17:00:00'
+    before: 08:00:00
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.right_underbed
+    data: {}
+  mode: single
+- id: '1736287824193'
+  alias: John's underbed light on
+  description: 'John gets out of bed '
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.john_in_bed
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 1
+  conditions:
+  - condition: time
+    after: '20:00:00'
+    before: 06:30:00
+  actions:
+  - action: light.turn_on
+    data:
+      brightness_pct: 25
+      rgb_color:
+      - 255
+      - 191
+      - 0
+    target:
+      entity_id:
+      - light.right_underbed
+      - light.under_cabinet_light
+  mode: single
+- id: '1736287894077'
+  alias: Master bedroom door open
+  description: ''
+  triggers:
+  - entity_id: binary_sensor.lumi_master_bedroom_contact_1
+    trigger: state
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: The Master Bedroom Door has opened
+      title: Master Bedroom Door
+  mode: single
+- id: '1736287985178'
+  alias: Notify Wash Cycle Completed
+  description: ''
+  triggers:
+  - entity_id: sensor.washing_machine_is_running
+    trigger: state
+    from: 'true'
+    to: 'false'
+    for:
+      minutes: 1
+  conditions:
+  - condition: state
+    entity_id:
+    - person.christine
+    state: home
+  actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: The washing machine has finished its cycle
+      title: Washing Machine Done
+  mode: single
+- id: '1736288054177'
+  alias: Event sync pool and value water level
+  description: ''
+  triggers:
+  - trigger: mqtt
+    topic: homie/PoolDuino-pool/level/level
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      topic: poolduino-valve/waterlevel
+      payload: '{{ trigger.payload }}'
+  mode: single
