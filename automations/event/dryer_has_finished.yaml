@@ -1,7 +1,7 @@
 alias: Notify Dryer Cycle Completed
-trigger:
+triggers:
   - entity_id: sensor.dryer_is_running
-    platform: state
+    trigger: state
     from: "true"
     to: "false"
     for:
@@ -11,8 +11,8 @@ condition:
   entity_id:
     - person.christine
   state: "home"
-action:
-  service: notify.mobile_app_christine_timons_iphone
-  data:
-    message: "The dryer has finished its cycle"
-    title: Dryer Done
+actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: "The dryer has finished its cycle"
+      title: Dryer Done

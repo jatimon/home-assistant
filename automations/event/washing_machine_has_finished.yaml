@@ -1,7 +1,7 @@
 alias: Notify Wash Cycle Completed
-trigger:
+triggers:
   - entity_id: sensor.washing_machine_is_running
-    platform: state
+    trigger: state
     from: "true"
     to: "false"
     for:
@@ -11,8 +11,8 @@ condition:
   entity_id:
     - person.christine
   state: "home"
-action:
-  service: notify.mobile_app_christine_timons_iphone
-  data:
-    message: "The washing machine has finished its cycle"
-    title: Washing Machine Done
+actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: "The washing machine has finished its cycle"
+      title: Washing Machine Done

@@ -1,9 +1,9 @@
 id: lala_feeding_fish_arriving
 alias: Lala has arrived to feed the fish
-trigger:
+triggers:
   - entity_id: binary_sensor.lumi_front_door_contact
-    platform: state
+    trigger: state
     to: "on"
-action:
-  service: light.turn_on
-  entity_id: light.living_room_light
+actions:
+  - action: light.turn_on
+    entity_id: light.living_room_light

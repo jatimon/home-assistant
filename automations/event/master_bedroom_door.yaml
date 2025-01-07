@@ -1,11 +1,11 @@
 alias: Master bedroom door open
-trigger:
+triggers:
   - entity_id: binary_sensor.lumi_master_bedroom_contact_1
-    platform: state
+    trigger: state
     from: "off"
     to: "on"
-action:
-  service: notify.mobile_app_christine_timons_iphone
-  data:
-    message: "The Master Bedroom Door has opened"
-    title: "Master Bedroom Door"
+actions:
+  - action: notify.mobile_app_christine_timons_iphone
+    data:
+      message: "The Master Bedroom Door has opened"
+      title: "Master Bedroom Door"

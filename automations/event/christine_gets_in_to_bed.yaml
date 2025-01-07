@@ -2,7 +2,7 @@ id: 'christineinbed'
 alias: CHristine's underbed light off
 description: 'Christine gets in to bed '
 trigger:
-- platform: state
+- trigger: state
   entity_id:
   - binary_sensor.christine_in_bed
   from: 'off'
@@ -11,8 +11,8 @@ condition:
 - condition: time
   after: '17:00:00'
   before: 08:00:00
-action:
-- service: light.turn_off
+actions:
+- action: light.turn_off
   target:
     entity_id: 
     - light.left_underbed
