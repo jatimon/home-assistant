@@ -1,12 +1,12 @@
 id: "1670254277871"
 alias: Power Off Espresso Machine
 description: ""
-trigger:
-  - platform: time
+triggers:
+  - trigger: time
     at: "10:00:00"
 condition: []
-action:
-  - service: switch.turn_off
+actions:
+  - action: switch.turn_off
     data: {}
     target:
       entity_id: switch.kasa_dining_room_espresso_machine

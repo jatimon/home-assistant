@@ -1,12 +1,12 @@
 id: "officeheatingpad"
 alias: Power Off Office Heating Pad
 description: ""
-trigger:
-  - platform: time
+triggers:
+  - trigger: time
     at: "17:00:00"
 condition: []
-action:
-  - service: switch.turn_off
+actions:
+  - action: switch.turn_off
     data: {}
     target:
       entity_id: switch.zwave_office_plug
