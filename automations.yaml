@@ -297,3 +297,23 @@
     entity_id: 41c0f52e254f60f5cb9e182e57baed63
     domain: switch
   mode: single
+- id: '1736287482498'
+  alias: CHristine's gets into bed
+  description: 'Christine gets in to bed '
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.christine_in_bed
+    from: 'off'
+    to: 'on'
+  conditions:
+  - condition: time
+    after: '17:30:00'
+    before: 08:00:00
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.left_underbed
+    data: {}
+  mode: single

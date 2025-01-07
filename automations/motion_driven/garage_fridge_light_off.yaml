@@ -1,10 +1,10 @@
-trigger:
-  platform: state
-  entity_id: binary_sensor.tuyatec_garage_fridge_motion
-  to: 'off'
-  for: 00:02:00
-action:
-  service: switch.turn_off
-  entity_id: switch.garage_fridge_light
+triggers:
+  - trigger: state
+    entity_id: binary_sensor.tuyatec_garage_fridge_motion
+    to: 'off'
+    for: 00:02:00
+actions:
+  - action: switch.turn_off
+    entity_id: switch.garage_fridge_light
 alias: motion garage fridge light off
 id: garagefridgelightoff

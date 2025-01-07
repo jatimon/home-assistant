@@ -1,11 +1,11 @@
 alias: Security_Notifications
-trigger:
-  - platform: mqtt
+triggers:
+  - trigger: mqtt
     topic: frigate/events
     payload: new
     value_template: "{{ value_json.type }}"
-action:
-  - service: notify.mobile_app_johns_phone
+actions:
+  - action: notify.mobile_app_johns_phone
     data:
       message: 'A {{trigger.payload_json["after"]["label"]}} was detected.'
       data:
