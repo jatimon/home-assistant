@@ -276,27 +276,6 @@
     entity_id: 41c0f52e254f60f5cb9e182e57baed63
     domain: switch
   mode: single
-- id: '1735431121229'
-  alias: Turn off sink light with kitchen lights
-  description: ''
-  triggers:
-  - type: turned_off
-    device_id: eb827fb8356290b5036d7c62ab7c84e0
-    entity_id: 00fbdb3d46971b4500f3f3e9cd828265
-    domain: light
-    trigger: device
-  conditions:
-  - condition: device
-    type: is_on
-    device_id: 4a9011c4cf416d90b0df1fdd87253f76
-    entity_id: 41c0f52e254f60f5cb9e182e57baed63
-    domain: switch
-  actions:
-  - type: turn_off
-    device_id: 4a9011c4cf416d90b0df1fdd87253f76
-    entity_id: 41c0f52e254f60f5cb9e182e57baed63
-    domain: switch
-  mode: single
 - id: '1736287482498'
   alias: CHristine's gets into bed
   description: 'Christine gets in to bed '
@@ -471,4 +450,32 @@
     data:
       topic: poolduino-valve/waterlevel
       payload: '{{ trigger.payload }}'
+  mode: single
+- id: '1736288327028'
+  alias: night light 1 on
+  description: ''
+  triggers:
+  - trigger: time
+    at: '21:00:00'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.night_light_1_switch
+  mode: single
+- id: '1736288362429'
+  alias: night light 1 off
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:00:00
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.night_light_1_switch
   mode: single

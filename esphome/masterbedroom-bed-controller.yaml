@@ -5,13 +5,14 @@ esp32:
   board: esp32dev
   framework:
     type: arduino
+# initial_value: '-2081482'
 
 globals:
   - id: christine_initial_zero
     type: float
     restore_value: 'yes'
-    initial_value: '-2081482'
-
+    initial_value: '-1435'
+    
   - id: john_initial_zero
     type: float
     restore_value: 'yes'
@@ -35,8 +36,8 @@ globals:
 # Enable logging
 logger:
   level: INFO
-#  logs:
-#    hx711: INFO
+  # logs:
+    # hx711: INFO
 
 # enable mqtt
 mqtt:

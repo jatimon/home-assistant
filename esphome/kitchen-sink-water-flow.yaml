@@ -6,6 +6,7 @@ esp8266:
 
 # Enable logging
 logger:
+  level: INFO
 
 # Enable Home Assistant API
 api:
@@ -64,7 +65,7 @@ switch:
     id: ntc_vcc
 
 interval:
-  - interval: 10s
+  - interval: 1s
     then:
       - switch.turn_on: ntc_vcc
       - component.update: source_sensor
