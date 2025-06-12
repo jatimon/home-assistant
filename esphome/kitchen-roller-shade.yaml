@@ -2,11 +2,14 @@ substitutions:
   devicename: rollerblind-kitchen
   devicestring: Rollerblind Kitchen
 
+esp8266:
+  board: d1_mini
+
 esphome:
   name: $devicename
-  platform: ESP8266
-  board: d1_mini
-  esp8266_restore_from_flash: true
+  # platform: esp8266
+  # board: d1_mini
+  # esp8266_restore_from_flash: true
   on_boot: 
     priority: 550.0
     then:

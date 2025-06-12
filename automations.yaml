@@ -109,21 +109,21 @@
 - id: '1702660654016'
   alias: Dog Medication Reminder
   description: ''
-  trigger:
-  - platform: time
-    at: 08:00:00
-  condition:
+  triggers:
+  - at: 08:00:00
+    trigger: time
+  conditions:
   - condition: template
     value_template: '{{ now().day == 15 }}'
-  action:
-  - service: notify.mobile_app_christine_timons_iphone
-    data:
+  actions:
+  - data:
       message: Reminder to give HeartGuard and NexGuard to Parsley
       title: Mediation Reminder
-  - service: notify.mobile_app_johns_phone
-    data:
+    action: notify.mobile_app_christine_timons_iphone
+  - data:
       message: Reminder to give HeartGuard and NexGuard to Parsley
       title: Mediation Reminder
+    action: notify.mobile_app_johns_phone
   mode: single
 - id: '1712599478326'
   alias: Garage Automation Toggle
@@ -145,29 +145,29 @@
 - id: '1718754606982'
   alias: Doorbell Camera
   description: ''
-  trigger:
+  triggers:
   - type: turned_on
-    platform: device
     device_id: fbee2d6078bbd0cb02673fd2ec1781a0
     entity_id: 900b12948b8959a58e967f65606ea94e
     domain: binary_sensor
-  condition: []
-  action:
-  - service: fully_kiosk.load_url
-    target:
-      device_id: 155613cfac84c5d271da60fd5ecf85bc
+    trigger: device
+  conditions: []
+  actions:
+  - action: browser_mod.popup
     data:
-      url: http://192.168.1.126:8123/lovelace-mushroom/doorbell
-  - delay:
-      hours: 0
-      minutes: 1
-      seconds: 30
-      milliseconds: 0
-  - service: button.press
-    metadata: {}
-    data: {}
-    target:
-      entity_id: button.lenovo_starview_load_start_url
+      dismissable: true
+      autoclose: false
+      title: Front Door Cam
+      timeout: 60000
+      size: fullscreen
+      deviceID:
+      - Lounge Browser
+      - Craftroom Browser
+      content:
+        camera_view: live
+        type: picture-glance
+        entities: []
+        camera_image: camera.doorbell
   mode: single
 - id: '1722902770003'
   alias: Govee On
@@ -235,7 +235,9 @@
   actions:
   - action: light.turn_on
     metadata: {}
-    data: {}
+    data:
+      transition: 0
+      brightness_pct: 100
     target:
       entity_id: light.shower_light
   mode: single
@@ -478,4 +480,193 @@
     data: {}
     target:
       entity_id: switch.night_light_1_switch
+  mode: single
+- id: '1736893459164'
+  alias: motion kitchen light off
+  description: ''
+  triggers:
+  - entity_id: binary_sensor.tuyatec_kitchen_motion
+    to: 'off'
+    for: 00:05:00
+    trigger: state
+  conditions: []
+  actions:
+  - target:
+      entity_id:
+      - switch.zwave_kitchen_sink_light
+      - switch.kichen_zwave_switch
+    action: switch.turn_off
+    data: {}
+  mode: single
+- id: '1736893514538'
+  alias: motion kitchen light on
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.tuyatec_kitchen_motion
+    to: 'on'
+  conditions:
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: -01:00:00
+    - condition: sun
+      before: sunrise
+      before_offset: -01:30:00
+    - condition: numeric_state
+      entity_id: sensor.kitchen_lux
+      below: 300
+  actions:
+  - action: switch.turn_on
+    entity_id: switch.kichen_zwave_switch
+  mode: single
+- id: '1738290386254'
+  alias: night light 3 on
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: 0
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 836b38afac62c67995781c7cceeab0ba
+    entity_id: 1785ee5c0d6f1f42b93d817def98d0ca
+    domain: switch
+  mode: single
+- id: '1738290439022'
+  alias: nightlight 3 off
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunrise
+    offset: 0
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 836b38afac62c67995781c7cceeab0ba
+    entity_id: 1785ee5c0d6f1f42b93d817def98d0ca
+    domain: switch
+  mode: single
+- id: '1740007949039'
+  alias: test off off
+  description: ''
+  triggers:
+  - device_id: 56f7b27d5625ddb256d3c10a3f14ff56
+    domain: zwave_js
+    type: zwave_js.value_updated.value
+    trigger: device
+    command_class: 37
+    property: currentValue
+    from: 'false'
+    to: 'false'
+    endpoint: '0'
+  conditions: []
+  actions:
+  - action: notify.mobile_app_johns_phone
+    metadata: {}
+    data:
+      message: light off
+  - type: turn_off
+    device_id: 4a9011c4cf416d90b0df1fdd87253f76
+    entity_id: dd218d73fab1db9f4b490e5cb64ca860
+    domain: light
+  mode: single
+- id: '1748979445550'
+  alias: Downstairs Bathroom Light On
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.zooz_downstairs_bathroom_motion
+    to: 'on'
+  - trigger: numeric_state
+    entity_id:
+    - binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+    above: 0
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.house_is_asleep
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 17
+        target:
+          entity_id: light.bathroom_switch
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.house_is_asleep
+        state: 'off'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: light.bathroom_switch
+  mode: single
+- id: '1748979843156'
+  alias: Downstairs Bathroom light off
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+    to: 'off'
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.bathroom_switch
+  mode: single
+- id: '1749255573560'
+  alias: Turn off downstairs bathroom light if on too long and no one is home (smart
+    retry)
+  description: 'Turns off the downstairs bathroom light if on too long and no one
+    is home.  If someone is home, waits for them to leave before acting.
+
+    '
+  triggers:
+  - entity_id: light.bathroom_switch
+    to: 'on'
+    for: 00:10:00
+    trigger: state
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+        state: 'off'
+      sequence:
+      - target:
+          entity_id: light.bathroom_switch
+        action: light.turn_off
+        data: {}
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+        state: 'on'
+      sequence:
+      - wait_for_trigger:
+        - entity_id:
+          - binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+          trigger: state
+          to: 'off'
+        timeout: 00:15:00
+        continue_on_timeout: false
+      - condition: state
+        entity_id: light.bathroom_switch
+        state: 'on'
+      - target:
+          entity_id: light.bathroom_switch
+        action: light.turn_off
+        data: {}
   mode: single

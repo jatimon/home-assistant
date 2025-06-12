@@ -1,0 +1,5 @@
+binary_sensor:
+  - name: Downstairs Bathroom Occupied
+    unique_id: downstairs_bathroom_occupied
+    state: >- 
+      {{ has_value("sensor.lnlinkha_e04b4101547a000000000000d6ac0000") and states("sensor.lnlinkha_e04b4101547a000000000000d6ac0000") | int > 0 }}
