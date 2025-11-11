@@ -14,3 +14,31 @@
   toggle_for: 1
   cancellable: True
   mode: on
+
+  # - platform: rest
+  #   name: hyperhdr lights
+  #   resource: http://pi-capture:8090/json-rpc
+#  body_on: '{"command":"componentstate", "componentstate": { "component":"LEDDEVICE", "state": true }}'
+#  body_off: '{ "command":"componentstate", "componentstate": { "component":"LEDDEVICE", "state": false } }'
+#  headers:
+#    Content-Type: application/json
+# 
+# - platform: rest
+#   name: HyperHDR LEDs
+#   resource: http://YOUR_HYPERHDR_IP:8090/json-rpc 
+#   body_on: '{"command": "component", "component": {"name": "LEDSTRIP", "state": true}}'
+#   body_off: '{"command": "component", "component": {"name": "LEDSTRIP", "state": false}}'
+#   headers: 
+#     Content-Type: application/json
+#   state_resource: http://YOUR_HYPERHDR_IP:8090/json-rpc
+#   value_template: >
+#     {% if value_json.info.components is defined %}
+#       {% for component in value_json.info.components %}
+#         {% if component.name == "LEDSTRIP" %}
+#           {{ component.state }}
+#         {% endif %}
+#       {% endfor %}
+#     {% else %}
+#         false
+#     {% endif %}
+# 

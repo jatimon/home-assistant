@@ -1,12 +1,29 @@
 substitutions:
   name: esp32-bluetooth-proxy-84ee38
   friendly_name: Bluetooth Proxy 84ee38
-packages:
-  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+#packages:
+#  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+
 esphome:
   name: ${name}
+  # name_add_mac_suffix: false
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
+
+esp32:
+  variant: esp32
+  framework: 
+    type: esp-idf
+
+esp32_ble_tracker:
+  scan_parameters: 
+    active: True
+
+bluetooth_proxy:
+  active: True
+
+logger:
+
 api:
   encryption:
     key: yv2UyZ4LM8t4Q49Fzid1ysCIl6TD/caBhdnEtTKmQo8=

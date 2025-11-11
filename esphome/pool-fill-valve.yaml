@@ -32,3 +32,18 @@ switch:
     name: Pool Autofill
     pin: D1
     restore_mode: ALWAYS_ON
+
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D5
+      mode: input_pullup 
+    name: "Garden Water"
+    id: garden_water
+    filters:
+      - invert:
+    # on_press:
+      #- switch.turn_on: garden_water
+    #on_release:
+      #- switch.turn_off: garden_water

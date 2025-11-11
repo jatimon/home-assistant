@@ -1,8 +1,0 @@
-trigger:
-  platform: state
-  entity_id: binary_sensor.tuya_garage_motion_sensor_motion
-  to: 'on'
-action:
-  service: light.turn_on
-  entity_id: light.garage_lights_3
-alias: motion garage light on

@@ -1,8 +1,0 @@
-triggers:
-  trigger: state
-  entity_id: binary_sensor.tuyatec_laundry_room_motion
-  to: 'on'
-actions:
-  action: switch.turn_on
-  entity_id: switch.laundry_light_switch
-alias: motion laundry light on
