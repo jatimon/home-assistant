@@ -1,2 +1,5 @@
 light.*:
   exempt: false
+
+light.browser_mod*:
+  exempt: true

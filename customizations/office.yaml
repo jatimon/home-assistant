@@ -1,3 +1,4 @@
 binary_sensor.lumi_office_contact_2:
   security_zone: exterior
   location: top left
+
