@@ -1,20 +1,4 @@
-substitutions:
-  devicename: ifan-master-bedroom-001
-  friendly_devicename: master-bedroom
-  # Morse codes for the different buzzer sounds
-  code_buzzer_on:  "E"    # .
-  code_buzzer_off: "I"    # ..
-  code_fan_off:    "T"    # -
-  code_fan_1:      "N"    # -.
-  code_fan_2:      "D"    # -..
-  code_fan_3:      "B"    # -...
-  code_rc_unpair:  "O"    # ---
-  code_short:      "E"    # .
-  code_long:       "T"    # -
-
-  # No need to change anything beyond here - all the substitutions must be in the same place.
-  fan_startup_boost_time: 5s
-
+#common/ifan04.yaml
 external_components:
   - source:
       type: git
@@ -23,19 +7,16 @@ external_components:
       type: git
       url: https://github.com/rh1rich/esphome-morse-code
 
-
 esphome:
   project:
     name: "rh1rich.iFan04"
-    version: "1.0.2"
-  name: $friendly_devicename
+    version: "1.0.0"
+  name: $devicename
+  friendly_name: $friendly_devicename
   on_boot:
-    - priority: 600
-      then:
-        - output.turn_off: buzzer
-        - globals.set: # needed to disable actions on switch initialization (state restore
-            id: switches_initialized
-            value: "true"
+    priority: 600
+    then:
+      - output.turn_off: buzzer
 
 esp8266:
   board: esp8285
@@ -47,49 +28,16 @@ esp8266:
 preferences:
   flash_write_interval: 5min
 
-#esp8266:
- # board: esp01_1m
-  #restore_from_flash: True
-  #early_pin_init: False
-
-#esphome:
- # name: ${name}
-  #comment: Sonoff iFan04-L
-  
-# Disable logging on serial as it is used by the remote
-#logger:
- # baud_rate: 0
-
-# Enable Home Assistant API
-#api:
- # services:
- #   - service: fan_cycle
- #     then:
- #       - fan.cycle_speed: the_fan
-
-ota:
-  platform: esphome
-  password: "0fabb2f80f55619145d93fe091b6864d"
-
-wifi:
-  min_auth_mode: 
-    WPA2
-  ssid: !secret upstairs_ssid
-  password: !secret wifi_password
-  fast_connect: True
-  use_address: ifan-master-bedroom-001.local
-
-dashboard_import:
-  package_import_url: github://cpyarger/esphome-templates/sonoff-ifan04-l.yaml@main
-
 # Enable logging
 # But disable it via UART0, because UART0 is used by the RF receiver
 logger:
   baud_rate: 0
-  level: INFO
+#  level: VERBOSE
 
 # Enable Home Assistant API
 api:
+  encryption:
+    key: !secret "api_key"
   # Setting reboot timeout to 0 seconds to disable the automatic reboot, if no api connection (Home Assistant server).
   # This is essential for offline usage.
   reboot_timeout: 0s
@@ -100,6 +48,27 @@ api:
       then:
         - morse_code.start:
             text: !lambda 'return text_string;'
+
+ota:
+  - platform: esphome
+    #password: !secret "ota_password"
+    password: "$ota_password"
+
+wifi:
+  ssid: !secret "wifi_ssid"
+  password: !secret "wifi_password"
+  fast_connect: yes
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "$devicename"
+    password: !secret "wifi_fallback_password"
+
+captive_portal:
+
+web_server:
+  port: 80
+  version: 3
 
 # GPIO00 ... Button
 # GPIO01 ... UART0 TX
@@ -221,7 +190,6 @@ fan:
     output: fan_relays
     speed_count: 3
 
-
 switch:
   - platform: template
     name: 'Buzzer enabled'
@@ -230,17 +198,9 @@ switch:
     optimistic: True
     restore_mode: RESTORE_DEFAULT_ON
     on_turn_on:
-      - if: # only trigger action after the switch is initially set (restored)
-          condition:
-            lambda: return (id(switches_initialized));
-          then:
-            - morse_code.start: $code_buzzer_on
+      - morse_code.start: $code_buzzer_on
     on_turn_off:
-      - if: # only trigger action after the switch is initially set (restored)
-          condition:
-            lambda: return (id(switches_initialized));
-          then:
-            - morse_code.start: $code_buzzer_off
+      - morse_code.start: $code_buzzer_off
   - platform: template
     name: 'Light enabled'
     id: light_enabled
@@ -455,10 +415,6 @@ globals:
     type: int
     restore_value: no
     initial_value: "0"
-  - id: switches_initialized
-    type: bool
-    restore_value: no
-    initial_value: "false"
 
 script:
   - id: fan_speed_set

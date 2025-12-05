@@ -517,17 +517,9 @@
     entity_id:
     - binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
     trigger: numeric_state
-- actions:
-  - action: light.turn_off
-    data: {}
-    metadata: {}
-    target:
-      entity_id: light.bathroom_switch
+- id: '1748979843156'
   alias: Downstairs Bathroom light off
-  conditions: []
   description: ''
-  id: '1748979843156'
-  mode: single
   triggers:
   - entity_id:
     - binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
@@ -538,6 +530,18 @@
     from: 'on'
     to: 'off'
     trigger: state
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.downstairs_bathroom_occupied
+    state:
+    - 'off'
+  actions:
+  - action: light.turn_off
+    data: {}
+    metadata: {}
+    target:
+      entity_id: light.bathroom_switch
+  mode: single
 - actions:
   - choose:
     - conditions:
@@ -1165,12 +1169,12 @@
   description: 'Checks all binary sensors with ''security_zone: entry_point''. If
     any are open, sends a notification. '
   triggers:
-  - trigger: state
-    entity_id:
+  - entity_id:
     - input_boolean.house_is_asleep
     from:
     to:
     - 'on'
+    trigger: state
   conditions: []
   actions:
   - variables:
@@ -1183,29 +1187,117 @@
       - condition: template
         value_template: '{{ open_entry_points | length > 0 }}'
       sequence:
-      - data:
+      - action: notify.mobile_app_johns_phone
+        data:
           message: 'Security Alert: The following entry points are open: {{ open_entry_points
             | join('', '') }}'
-        action: notify.mobile_app_johns_phone
     default:
-    - data: {}
+    - action: cover.close_cover
+      data: {}
       target:
         entity_id: '{{ states.cover | selectattr(''attributes.device_class'', ''eq'',
           ''door'') | map(attribute=''entity_id'') | list }}'
-      action: cover.close_cover
-    - data: {}
+    - action: light.turn_off
+      data: {}
       target:
         entity_id: '{{ states.light | selectattr(''attributes.exempt'', ''eq'', false)
           | map(attribute=''entity_id'')| list }}'
-      action: light.turn_off
-    - data: {}
+    - action: switch.turn_off
+      data: {}
       target:
         entity_id: '{{ states.switch | selectattr(''attributes.device_class'', ''eq'',
           ''light'') | map(attribute=''entity_id'') | list }}'
-      action: switch.turn_off
-    - data:
-        message: All entry points are closed. Doors, lights, and light-controlling
-          switches have been secured.
-        title: Entry Point Security
-      action: persistent_notification.create
+  mode: single
+- id: ai_agent_auto_1764357707775
+  alias: Downstairs Bathroom Fan On - Humidity Spike
+  description: Turns on the downstairs bathroom fan when humidity rises significantly
+    above the 24-hour average.
+  triggers:
+  - above: 0
+    value_template: '{{ (states(''sensor.downstairs_bathroom_humidity_average_linear_24h'')
+      | float(0) + 10.0) }}'
+    entity_id:
+    - sensor.zooz_downstairs_bathroom_humidity
+    for:
+      minutes: 5
+    trigger: numeric_state
+  conditions:
+  - condition: state
+    entity_id: switch.bathroom_switch
+    state: 'off'
+  actions:
+  - target:
+      entity_id: switch.bathroom_switch
+    action: switch.turn_on
+  mode: single
+- id: ai_agent_auto_1764357709575
+  alias: Downstairs Bathroom Fan Off - Humidity Return
+  description: Turns off the downstairs bathroom fan when humidity returns to or below
+    the 24-hour average.
+  triggers:
+  - below: 0
+    value_template: '{{ (states(''sensor.downstairs_bathroom_humidity_average_linear_24h'')
+      | float(0)) }}'
+    entity_id:
+    - sensor.zooz_downstairs_bathroom_humidity
+    for:
+      minutes: 5
+    trigger: numeric_state
+  conditions:
+  - condition: state
+    entity_id: switch.bathroom_switch
+    state: 'on'
+  actions:
+  - target:
+      entity_id: switch.bathroom_switch
+    action: switch.turn_off
+    data: {}
+  mode: single
+- id: ai_agent_auto_1764358261816
+  alias: Downstairs Bathroom Occupancy Detection - Set Occupied (Updated)
+  description: Detects occupancy in the Downstairs Bathroom using motion, door, and
+    a general downstairs presence s
+  triggers:
+  - entity_id:
+    - binary_sensor.lumi_downstairs_bathroom_contact
+    to:
+    - 'off'
+    trigger: state
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.zooz_downstairs_bathroom_motion
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.lnlinkha_e04b4101547a000000000000d6ac0000_2
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.downstairs_washroom_occupied
+    state: 'off'
+  actions:
+  - target:
+      entity_id: input_boolean.downstairs_washroom_occupied
+    action: input_boolean.turn_on
+  mode: single
+- id: '1764448162097'
+  alias: '[Ad Hoc] Travel day espresso machine'
+  description: ''
+  triggers:
+  - trigger: time
+    at: 04:30:00
+    weekday:
+    - mon
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 05e915797c079f471f88fbb0bc62066a
+    entity_id: 4d7606f7ee345d561d6c7e89df53c9ea
+    domain: switch
+  - action: notify.mobile_app_johns_phone
+    metadata: {}
+    data:
+      message: DIsable the espresso automation
   mode: single

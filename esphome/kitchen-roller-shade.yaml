@@ -58,10 +58,14 @@ stepper:
   - platform: uln2003
     id: my_stepper
     # Reversed order as it turned the wrong way
-    pin_a: D4
-    pin_b: D2
-    pin_c: D3
-    pin_d: D1
+    #pin_a: D4
+    #pin_b: D2
+    #pin_c: D3
+    #pin_d: D1
+    pin_a: D3
+    pin_b: D1
+    pin_c: D4
+    pin_d: D2
     max_speed: 675 steps/s
     sleep_when_done: true
 
@@ -159,7 +163,7 @@ switch:
           id(last_known_position) = id(my_stepper).current_position;
       # Set to move long
       - lambda: |-
-          id(my_stepper).set_target(1000000);
+          id(my_stepper).set_target(-1000000);
     turn_off_action:
       - switch.template.publish:
           id: move_down
@@ -193,7 +197,7 @@ switch:
           id(last_known_position) = id(my_stepper).current_position;
       # Set to move long
       - lambda: |-
-          id(my_stepper).set_target(-1000000);
+          id(my_stepper).set_target(1000000);
     turn_off_action:
       - switch.template.publish:
           id: move_up
