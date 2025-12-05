@@ -1,0 +1,8 @@
+binary_sensor:
+  - unique_id: downstairs_bathroom_humidity_status
+    default_entity_id: binary_sensor.downstairs_bathroom_humidity_status
+    name: Downstairs Bathroom Humidity Status
+    state:
+      "{% set humid = states('sensor.zooz_downstairs_bathroom_humidity')|int(default=0)
+      %} {% set avg = states('sensor.downstairs_bathroom_humidity_average_linear_24h')|int(default=0)
+      %} {% set thresh = 5 %} {{ (humid - avg) > thresh }}"

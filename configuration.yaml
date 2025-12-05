@@ -110,52 +110,10 @@ input_text:
     max: 255
     initial: '{"text": "This is a test of the alexa actions custom skill. Did it work?", "event": "actionable.skill.test"}'
 
-# Enable font awesome, downloaded via hacs
-#fontawesome:
-
-cover:
-  - platform: template
-    covers:
-      garage_door:
-        device_class: garage
-        friendly_name: "Garage Door"
-        unique_id: unique_id_garage_door
-        position_template: |-
-          {% if is_state('binary_sensor.garage_zeave_contact_window_door_is_open', 'on') -%}
-            0
-          {%- else -%}
-            100
-          {%- endif %}
-        open_cover:
-          - condition: state
-            entity_id: binary_sensor.garage_zeave_contact_window_door_is_open
-            state: "on"
-          - action: switch.turn_on
-            target:
-              entity_id: switch.garage_door_backup
-        close_cover:
-          - condition: state
-            entity_id: binary_sensor.garage_zeave_contact_window_door_is_open
-            state: "off"
-          - action: switch.turn_on # momentary switch
-            target:
-              entity_id: switch.garage_door_backup
-        stop_cover:
-          action: switch.turn_on
-          target:
-            entity_id: switch.garage_door_backup
-        icon_template: >-
-          {% if states('binary_sensor.garage_zeave_contact_window_door_is_open')|float > 0 %}
-            mdi:garage-open
-          {% else %}
-            mdi:garage
-          {% endif %}
-
 http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 192.168.1.30
-
 
 #rest_command:
 #  hyperion_component:

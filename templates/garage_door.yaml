@@ -1,0 +1,36 @@
+cover:
+  - device_class: garage
+    unique_id: unique_id_garage_door
+    open_cover:
+      - condition: state
+        entity_id:
+          - binary_sensor.garage_zeave_contact_window_door_is_open
+        state: "on"
+        match: all
+      - action: switch.turn_on
+        target:
+          entity_id:
+            - switch.garage_door_backup
+    close_cover:
+      - condition: state
+        entity_id:
+          - binary_sensor.garage_zeave_contact_window_door_is_open
+        state: "off"
+        match: all
+      - action: switch.turn_on
+        target:
+          entity_id:
+            - switch.garage_door_backup
+    stop_cover:
+      - action: switch.turn_on
+        target:
+          entity_id:
+            - switch.garage_door_backup
+    default_entity_id: cover.garage_door
+    icon:
+      "{% if states('binary_sensor.garage_zeave_contact_window_door_is_open')|float
+      > 0 %}\n  mdi:garage-open\n{% else %}\n  mdi:garage\n{% endif %}"
+    name: Garage Door
+    position:
+      "{% if is_state('binary_sensor.garage_zeave_contact_window_door_is_open',
+      'on') -%}\n  0\n{%- else -%}\n  100\n{%- endif %}"

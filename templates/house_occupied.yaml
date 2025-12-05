@@ -1,0 +1,7 @@
+binary_sensor:
+  - device_class: presence
+    default_entity_id: binary_sensor.anyone_home
+    name: House Occupied
+    state:
+      "{{ is_state('person.john_timon', 'home') or is_state('person.christine',
+      'home') }}"
